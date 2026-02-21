@@ -117,6 +117,8 @@
             const [activeSummaryId, setActiveSummaryId] = useState(null);
             const [theme, setTheme] = useState('dark');
             const [user, setUser] = useState(null);
+            
+            // --- הגדרות סיסמאות ---
             const [isUnlocked, setIsUnlocked] = useState(false);
             const [passwordInput, setPasswordInput] = useState('');
             const CORRECT_PASSWORD = "1234";
@@ -223,7 +225,15 @@
                 if (!materialInput.trim() && attachedFiles.length === 0) return showAlert("חסר תוכן", "אנא הכנס חומר לפני העיבוד.");
                 setIsProcessingSummary(true); setActiveTab('summaries'); setActiveSummaryId(null);
 
-                const systemInstruction = `אתה סייען למידה אקדמי וערכי לקורס 'סוגיות מוסריות בספר בראשית'. 1. הבחן בין תתי-נושאים. 2. הבא דעות פרשנים רלוונטיים לכל תת-נושא. 3. תן דגש מרכזי ל"דגשי המרצה". 4. מסר ערכי מסכם. 5. לפחות 5 שאלות חזרה איכותיות מתוך החומר שהוזן בלבד. החזר JSON.`;
+                // שיפור משמעותי לפרומפט כדי להכריח חלוקה מדויקת של נושאים ופרשנים
+                const systemInstruction = `אתה סייען למידה אקדמי וערכי לקורס 'סוגיות מוסריות בספר בראשית'. 
+הנחיות קריטיות:
+1. חובה להבחין בין תתי-נושאים שונים בתוך החומר! אל תאחד הכל לעיסה אחת. חלק את החומר ל-subTopics ברורים ונפרדים, לפי פרקים או סוגיות.
+2. לכל תת-נושא, הבא את דעות הפרשנים/חז"ל/הוגים שרלוונטיים *אך ורק* לאותו תת-נושא ספציפי.
+3. תן דגש מרכזי ל"דגשי המרצה" בפסקה ייעודית.
+4. הפק מסר מוסרי וערכי מסכם.
+5. צור לפחות 5 שאלות חזרה איכותיות מתוך החומר שהוזן בלבד.
+החזר אך ורק בפורמט JSON תקין.`;
                 let prompt = `${topicName.trim() ? `נושא: ${topicName}\n\n` : ''}חומר הלימוד:\n${materialInput}\n\nדגשי המרצה:\n${highlightsInput || 'אין'}`;
                 
                 const schema = {
@@ -248,7 +258,7 @@
                     setSummaries(prev => [newSummary, ...prev]);
                     setTopicName(''); setMaterialInput(''); setHighlightsInput(''); setAttachedFiles([]); setActiveSummaryId(newSummary.id);
                 } catch (error) {
-                    showAlert("שגיאה בעיבוד", "אירעה שגיאה. ודא שהמפתחות הוגדרו נכון."); setActiveTab('input');
+                    showAlert("שגיאה בעיבוד", "אירעה שגיאה. ייתכן והטקסט ארוך מדי או שיש בעיית תקשורת מול השרת."); setActiveTab('input');
                 } finally {
                     setIsProcessingSummary(false);
                 }
@@ -364,7 +374,7 @@
                             <div className={`${bgCard} border ${borderCard} p-6 rounded-2xl shadow-2xl max-w-sm w-full`}>
                                 <div className="flex items-center gap-3 mb-4"><Icon name="trash" className="text-red-500" size="text-2xl" /><h3 className="text-xl font-bold">אימות מחיקה</h3></div>
                                 <p className={`${textMuted} mb-4`}>הזן סיסמא לאישור מחיקה:</p>
-                                <input type="password" value={deletePassword} onChange={e => setDeletePassword(e.target.value)} onKeyDown={e => e.key==='Enter' && confirmDelete()} className={`w-full ${bgInput} border ${borderCard} rounded-xl p-3 text-center mb-6`} placeholder="1234" autoFocus />
+                                <input type="password" value={deletePassword} onChange={e => setDeletePassword(e.target.value)} onKeyDown={e => e.key==='Enter' && confirmDelete()} className={`w-full ${bgInput} border ${borderCard} rounded-xl p-3 text-center mb-6`} placeholder="הזן סיסמא..." autoFocus />
                                 <div className="flex justify-end gap-3">
                                     <button onClick={() => setDeleteModalOpen(false)} className={`px-5 py-2.5 rounded-xl ${theme==='dark'?'bg-slate-800':'bg-slate-200'}`}>ביטול</button>
                                     <button onClick={confirmDelete} className="px-6 py-2.5 rounded-xl text-white bg-red-600">מחק</button>
@@ -412,7 +422,7 @@
                                                 <input type="text" value={topicName} onChange={e => setTopicName(e.target.value)} className={`w-full ${bgInput} border ${borderCard} rounded-xl p-4`} placeholder="לדוגמה: עקידת יצחק" />
                                             </div>
                                             <div>
-                                                <label className={`block text-sm font-medium ${textMuted} mb-2`}>חומר הלימוד:</label>
+                                                <label className={`block text-sm font-medium ${textMuted} mb-2`}>חומר הלימוד (מומלץ להפריד נושאים שונים בשורה ריקה):</label>
                                                 <textarea value={materialInput} onChange={e => setMaterialInput(e.target.value)} className={`w-full h-40 ${bgInput} border ${borderCard} rounded-xl p-4 resize-none`} placeholder="הדבק כאן סיכומים..." />
                                             </div>
                                             <div className={`p-4 ${bgCard} border border-amber-500/30 rounded-xl`}>
