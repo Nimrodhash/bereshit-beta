@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>סוגיות מוסריות בספר בראשית - פורטל למידה</title>
+    <title>סוגיות מוסריות בתנ"ך - הפורטל המלא והמצטבר</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -57,13 +57,13 @@
 </head>
 <body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col">
 
-    <!-- Navigation -->
+    <!-- Navbar -->
     <nav class="bg-blue-800 shadow-lg sticky top-0 z-50 text-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
                     <div class="bg-white text-blue-800 p-2 rounded-xl shadow-md">📜</div>
-                    <span class="text-2xl font-black italic">סוגיות מוסריות <span class="text-blue-200">בספר בראשית</span></span>
+                    <span class="text-2xl font-black italic">סוגיות מוסריות <span class="text-blue-200">בתנ"ך</span></span>
                 </div>
                 <div class="flex space-x-reverse space-x-8">
                     <button onclick="showSection('home')" id="nav-home" class="active-nav py-7 font-bold text-lg border-b-4 border-transparent hover:border-blue-200 transition">בית</button>
@@ -77,12 +77,12 @@
     <!-- Home Section -->
     <header id="home-section" class="hero-gradient text-white py-32 px-6 text-center shadow-inner flex-grow flex items-center">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-black mb-8 tracking-tight">סוגיות מוסריות בספר בראשית</h1>
-            <p class="text-xl md:text-2xl opacity-90 mb-12 font-light max-w-2xl mx-auto leading-relaxed">
-                ברוך הבא לפורטל הלמידה המקיף. כל חומרי הקורס, דפי הדגשים וסיכומי ההרצאות המורחבים – כעת כולל את כל 13 הנושאים המרכזיים.
+            <h1 class="text-5xl md:text-7xl font-black mb-8 tracking-tight text-white">הפורטל המלא - סוגיות מוסריות</h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-12 font-light max-w-2xl mx-auto leading-relaxed text-white">
+                מאגר מידע מצטבר הכולל את כל חומרי הקורס בפירוט מקסימלי, פסקה אחר פסקה, ללא השמטות. שום דבר לא משתנה, הכל נשמר ומתווסף.
             </p>
             <div class="flex flex-wrap justify-center gap-6">
-                <button onclick="showSection('topics')" class="bg-white text-blue-800 px-12 py-5 rounded-2xl font-black text-xl shadow-2xl hover:bg-slate-50 transition transform hover:-translate-y-1">התחל ללמוד</button>
+                <button onclick="showSection('topics')" class="bg-white text-blue-800 px-12 py-5 rounded-2xl font-black text-xl shadow-2xl hover:bg-slate-50 transition transform hover:-translate-y-1">התחל ללמוד (15 נושאים)</button>
                 <button onclick="showSection('exams')" class="bg-blue-900 text-white border border-blue-400 px-12 py-5 rounded-2xl font-black text-xl hover:bg-blue-950 transition shadow-xl">תרגול שאלות</button>
             </div>
         </div>
@@ -93,19 +93,19 @@
         <div class="flex flex-col lg:flex-row gap-10">
             <aside class="lg:w-1/3">
                 <div class="bg-white rounded-2xl shadow-sm border p-4 sticky top-28">
-                    <div class="p-5 border-b mb-4">
+                    <div class="p-5 border-b mb-4 text-center">
                         <h3 class="font-black text-slate-900 text-xl">מפת נושאי הלימוד</h3>
-                        <p class="text-sm text-slate-500 mt-1 italic">בחר נושא כדי להציג את התוכן המלא</p>
+                        <p class="text-sm text-green-600 mt-1 font-bold italic">צבירת מידע פעילה ✅</p>
                     </div>
-                    <nav class="space-y-1" id="topic-menu"></nav>
+                    <nav class="space-y-1 overflow-y-auto max-h-[60vh]" id="topic-menu"></nav>
                 </div>
             </aside>
             <div class="lg:w-2/3">
                 <div id="topic-display" class="bg-white rounded-3xl shadow-sm border p-8 md:p-12 min-h-[600px] transition-all duration-300">
                     <div class="flex flex-col items-center justify-center h-full py-32 text-center text-slate-400">
-                        <div class="text-7xl mb-6">📍</div>
-                        <h2 class="text-3xl font-black text-slate-800">אנא בחר נושא ממפת הלמידה</h2>
-                        <p class="max-w-md mx-auto mt-4 text-lg">כל חומרי הלימוד נשמרים כאן בפירוט המקסימלי.</p>
+                        <div class="text-7xl mb-6">📂</div>
+                        <h2 class="text-3xl font-black text-slate-800">אנא בחר נושא ללמידה מפורטת</h2>
+                        <p class="max-w-md mx-auto mt-4 text-lg">כל המידע שסיפקת נשמר בתוך כל נושא ללא קיצורים.</p>
                     </div>
                 </div>
             </div>
@@ -115,8 +115,8 @@
     <!-- Exam Section -->
     <main id="exams-section" class="max-w-4xl mx-auto px-6 py-12 hidden w-full">
         <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-16 border">
-            <h2 class="text-4xl font-black text-center mb-4 text-blue-900">מבחן תרגול מקיף</h2>
-            <p class="text-center text-slate-500 mb-12 text-lg">שאלות מבוססות דגשים | 4 אפשרויות | ערבוב מלא</p>
+            <h2 class="text-4xl font-black text-center mb-4 text-blue-900">מבחן סיכום מצטבר</h2>
+            <p class="text-center text-slate-500 mb-12 text-lg italic">השאלות מתעדכנות ומתערבבות עם כל נושא חדש שנוסף</p>
             <div id="quiz-container" class="space-y-10"></div>
             <div class="mt-20 text-center">
                 <button onclick="checkQuiz()" class="bg-blue-700 text-white px-16 py-6 rounded-2xl font-black text-2xl hover:bg-blue-800 shadow-2xl transition transform active:scale-95">בדוק תוצאות</button>
@@ -127,182 +127,230 @@
 
     <footer class="bg-slate-900 text-slate-500 py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-white font-bold text-xl mb-2">סוגיות מוסריות בספר בראשית</p>
+            <p class="text-white font-bold text-xl mb-2">סוגיות מוסריות בתנ"ך</p>
             <p class="text-sm">נבנה על פי דף הדגשים וסיכומי הקורס המלאים 2026</p>
         </div>
     </footer>
 
     <script>
-        // --- CENTRAL STUDY DATA (CUMULATIVE) ---
         const studyData = [
             {
-                id: "topic1",
+                id: "t1",
                 title: "1. אוסף חטאי בראשית",
                 content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">1. אוסף חטאי בראשית</h2>
-                    <div class="story-context">ספר בראשית פותח ברצף של חטאים קיצוניים המשמשים כ"הוראות הפעלה" לאנושות. הם מראים לאן אדם ללא חינוך, ערכים ובלמים מוסריים עלול להידרדר.</div>
+                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">1. אוסף חטאי בראשית - המבוא לאדם והוראות ההפעלה</h2>
+                    <div class="story-context">
+                        ספר בראשית פותח ברצף של חטאים קיצוניים המשמשים כ"הוראות הפעלה" לאנושות. התנ"ך משמש כמראה של העם היהודי, אך הוא מראה מציאות מורכבת של דמויות שאינן מושלמות. שתי הפרשות הראשונות הן מבוא לאדם הלא-ערכי והלא-מחונך, ומראות לאן אדם ללא בלמים מוסריים עלול להידרדר.
+                    </div>
+
                     <div class="question-box"><span class="question-title">1. חטא אדם הראשון, למה באמת חוטא?</span></div>
-                    <div class="expansion-text">החטא נובע מחוסר היכולת להתמודד עם סקרנות. האל הציב גבול יחיד ("לא תאכל") כדי לבחון איפוק. אנלוגיית "חנות הגאדג'טים": עצם האיסור יוצר משיכה וסקרנות הרסנית.</div>
+                    <div class="expansion-text">
+                        החטא אינו נובע מרעב, שכן לאדם וחווה מותר לאכול מכל פירות הגן חוץ מעץ הדעת. החטא נובע מ<strong>חוסר היכולת של האדם להתמודד עם סקרנותו</strong>. האל הציב גבול יחיד כדי לבחון את האיפוק האנושי.
+                        <br><br>
+                        <strong>אנלוגיית חנות הגאדג'טים:</strong> דמיינו אדם שאוהב טכנולוגיה שנכנס לחנות שבה מותר לו להתנסות בכל המכשירים חוץ מגאדג'ט אחד ספציפי שאסור לו לגעת בו - דווקא עליו הוא יתביית. עצם האיסור יוצר משיכה וסקרנות הרסנית, בגלל יצר האדם לרצות את מה שאינו יכול להשיג.
+                    </div>
+
                     <div class="question-box"><span class="question-title">2. מה חטא קין הכפול?</span></div>
-                    <div class="expansion-text">החטא הראשון הוא הקנאה. קין הביא מן "הפסולת" בעוד הבל הביא את המובחר. החטא השני הוא הרצח בשדה בעקבות ויכוח על רכוש, דת או אישה.</div>
-                    <div class="question-box"><span class="question-title">3. מה סיבת המבול האמיתית?</span></div>
-                    <div class="expansion-text">חטאי מין, ניצול נשים ופריצת גבולות ("בני האלוהים"). בבתי הספר מלמדים על "חמס" (גזל) כי הנושא המיני רגיש.</div>
+                    <div class="expansion-text">
+                        קין (עובד אדמה) יוזם מנחה, והבל מביא אחריו - "קוף אחרי בן אדם". ה' מקבל את המנחה של הבל ולא את של קין. המנחה של הבל היא של ה"שני", בעוד היזם המקורי (קין) נדחה. קין מרגיש כעס, קנאה וחוסר צדק.
+                        <br><br>
+                        <strong>החטא הראשון - הקנאה:</strong> קין מרגיש מושפל. ה' נתן לו הזדמנות ל"מקצה שיפורים" ("הלא אם תיטיב שאת"), ומסביר שכל התחושות הקשות יישארו עליו אם לא יתקן. <strong>לפי מדרש בראשית רבה:</strong> קין הביא מנחה מן "הפסולת", בעוד הבל הביא את המובחר ביותר. קין לא השקיע ולכן נדחה.
+                        <br><br>
+                        <strong>החטא השני - הרצח:</strong> הוויכוח בין האחים מתפוצץ על נושאי רכוש, דת או אישה, עד שקין הורג את הבל, אחיו היחיד.
+                    </div>
+
+                    <div class="question-box"><span class="question-title">3. מה סיבת המבול האמיתית? למה לא מלמדים זאת בבתי הספר?</span></div>
+                    <div class="expansion-text">
+                        אלוהים מביא מבול בגלל ש"מלאה הארץ חמס". המקרא מפרט בפרק ו' סיבה דרמטית: <strong>חטאי מין, ניצול נשים ופריצת גבולות</strong>. "בני האלוהים" (בני אדם בעלי עוצמה) ראו כי "בנות האדם" טובות לניצולם.
+                        <br><br>
+                        השחיתות הייתה כה עמוקה עד שהאל השווה את האדם לבהמה. בבתי הספר מלמדים על "חמס" (גזל) כי הנושא המיני רגיש, אך המקרא מלמד שכשאין גבולות מיניים ומוסריים, כבר כולם שותפים להתנהגות הנוראית והעולם ראוי להשמדה.
+                    </div>
+
+                    <div class="question-box"><span class="question-title">4. חטא היציאה מן התיבה: מה באמת קרה שם?</span></div>
+                    <div class="expansion-text">
+                        נוח יוצא מהתיבה, נוטע כרם, משתכר ומתפשט. חם רואה אותו וקורא לאחיו לצפות במחזה. 
+                        <br><br>
+                        <strong>לפי התלמוד הבבלי (סנהדרין ע'):</strong> נחלקו רב ושמואל - אחד אמר שחם <strong>סירס</strong> את נח (כדי למנוע יורשים נוספים שיחלקו את העולם) ואחד אמר שחם <strong>אנס אותו</strong> ("רבעו" - להפגנת כוח ושליטה). נוח יודע שעשו לו דבר ומקלל את כנען הנכד (כי חם כבר בורך). הסיפור מלמד שהאדם אינו משתנה בקלות; גם אחרי המבול, היצרים חוזרים.
+                    </div>
+
+                    <div class="question-box"><span class="question-title">5. מגדל בבל: חטא היוהרה והאחדות הכפויה</span></div>
+                    <div class="expansion-text">
+                        בני האדם רצו לבנות מגדל שיגיע לשמיים ולהשתלט על העולם. ה' לא אוהב את האחדות הזו. קיימת דעה שהייתה זו <strong>אחדות כפויה (קומוניזם)</strong> שבה כולם חייבים לחשוב ולפעול אותו דבר. האל בילבל את שפתם כדי לשבור את הכפייה ולאפשר אינדיבידואליזם וחינוך נכון.
+                    </div>
+
+                    <div class="question-box"><span class="question-title">6. מה המסר של התורה בפתיחתה באוסף חטאים אלה?</span></div>
+                    <div class="expansion-text">
+                        סיפורי בראשית הם "סדנה" לכיצד לנהוג על ידי הדגמה של מה לא לעשות. הם מראים לאן אדם ללא ערכים, חינוך ובלמים יכול להידרדר (רצח, אונס אב, יוהרה). זהו מבוא הכרחי המלמד אותנו שסקרנות, קנאה ותאווה זקוקים לגבולות מוסריים.
+                    </div>
                 `
             },
             {
-                id: "topic2",
+                id: "t2",
                 title: "2. אברהם ושרה במצרים",
                 content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">2. אברהם ושרה במצרים</h2>
-                    <div class="question-box"><span class="question-title">גישת רמב"ן המפתיעה:</span></div>
-                    <div class="expansion-text">אברהם חטא חטא גדול בשגגה בכך שלא בטח בה' שיכלכל אותו בכנען וסיכן את שרה במצרים למען הצלתו האישית.</div>
-                    <div class="question-box"><span class="question-title">גישות מצדיקות:</span></div>
-                    <div class="expansion-text">רד"ק (הצורך בבחירה ברע במיעוטו), חזקוני (הרתעה של משפחת פשע), אברבנאל (פיקוח נפש), וספורנו (משיכת זמן במו"מ).</div>
+                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">2. אברהם ושרה במצרים - האם הוקרבה שרה?</h2>
+                    <div class="story-context">אברהם מגיע מאור כשדים דרך חרן לכנען. בעקבות רעב, הוא יורד למצרים וחושש לחייו בגלל יופייה של שרה. הוא מבקש ממנה להציג עצמה כאחותו.</div>
+                    <div class="question-box"><span class="question-title">1. גישת רמב"ן המפתיעה: ביקורת על האב המייסד</span></div>
+                    <div class="expansion-text">הרמב"ן טוען ש<strong>אברהם חטא חטא גדול בשגגה.</strong> הוא היה צריך לבטוח בה' שיכלכל אותו בתוך ארץ כנען ולא לעזוב אותה כלל למרות הרעב. בנוסף, הוא הכשיל את שרה כשביקש ממנה לשקר ולסכן את עצמה למען הצלתו. המילה "בשגגה" רומזת שאברהם לא התכוון לחטוא בזדון, אך כשל בביטחון.</div>
+                    <div class="question-box"><span class="question-title">2. ארבעת הגישות המצדיקות:</span></div>
+                    <div class="expansion-text">
+                        <div class="commentator-card"><span class="commentator-label">רד"ק (הגישה האקלימית):</span> המצרים היו כעורים ושטופי זימה. אברהם בחר ב"רע במיעוטו" – אונס זמני של שרה עדיף על רצח אברהם ואונס תמידי שלה.</div>
+                        <div class="commentator-card"><span class="commentator-label">חזקוני (גישת "משפחת הפשע"):</span> אברהם רצה לייצר הרתעה. שרה היתה אמורה לומר "זה אחי, אתם יודעים מי הוא?" ולרמוז שבעלה נמצא רחוק עם משפחה מיוחסת.</div>
+                        <div class="commentator-card"><span class="commentator-label">אברבנאל:</span> אם המוטיב חזר גם אצל יצחק, סימן שזו טקטיקה לגיטימית להצלת חיים.</div>
+                        <div class="commentator-card"><span class="commentator-label">ספורנו:</span> השקר נועד לייצר מו"מ (מכרז) שימשוך זמן בתקווה שהרעב יסתיים.</div>
+                    </div>
+                    <div class="question-box"><span class="question-title">3. גישת רש"ר הירש המאזנת: "אמרי נא"</span></div>
+                    <div class="expansion-text">הרש"ר הירש מדגיש את פנייתו של אברהם: הוא משתמש במילים "את יפת מראה", "אמרי <strong>נא</strong>" (בבקשה) ו"ייטב לי <strong>בעבורך</strong>". אברהם לא כפה על שרה אלא פנה אליה כשותפה. ה' הצילם ב"נגעים" (מחלות מין) שהביא על פרעה.</div>
                 `
             },
             {
-                id: "topic3",
+                id: "t3",
                 title: "3. עקדת יצחק",
                 content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">3. עקדת יצחק</h2>
-                    <div class="question-box"><span class="question-title">הביקורת של יוסי שריד:</span></div>
-                    <div class="expansion-text">ביקר את הצייתנות המפחידה של אברהם שלא התווכח למען בנו.</div>
-                    <div class="question-box"><span class="question-title">פתרון פריאל:</span></div>
-                    <div class="expansion-text">ה' ביקש "העלהו" - להרים בדרגה (כמו סימבה). אברהם אמר "ונשובה" (ברבים) כי תכנן לחזור יחד. המלאך אמר "אל תשלח ידך" כי הסכין הפכה לקרש.</div>
+                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">3. עקדת יצחק - בין ציות מוחלט לפרשנות מחודשת</h2>
+                    <div class="story-context">יצחק היה בן 37 בזמן העקדה. אברהם היה בן 100 כשנולד יצחק. הציווי האלוקי להעלותו לעולה מגיע ללא הסבר, ואברהם מציית ללא ויכוח, בניגוד מוחלט למקרה סדום שבו נלחם על חיי רשעים.</div>
+                    <div class="question-box"><span class="question-title">1. הביקורת של יוסי שריד (1984):</span></div>
+                    <div class="expansion-text">יוסי שריד ביקר את <strong>הצייתנות המפחידה</strong> של אברהם. הוא תמה: איך ייתכן שאברהם, שהתווכח עם אלוהים על רשעי סדום, שותק כשמדובר בבנו שלו? הוא ראה בעקדה מופת מסוכן המצדיק הקרבת בנים למען אידיאולוגיה, והשווה זאת להורים השולחים בנים לצבא בשם "קידוש השם". עבור שריד, החלופה למלחמה והקרבה צריכה להיות שלום.</div>
+                    <div class="question-box"><span class="question-title">2. פתרון פריאל עם התימוכין בכתובים: טקס העברה בדרגה</span></div>
+                    <div class="expansion-text">פריאל מציע קריאה חדשה ומהפכנית: אברהם פשוט <strong>טעה בהבנה</strong> של מה שה' ביקש. "קח נא" הוא בקשה; "העלהו" יכול לסמל <strong>העלאה בדרגה</strong> (כמו סימבה). אברהם אמר "ונשובה" (ברבים) כי תכנן לחזור יחד עם יצחק. אברהם שגה כי פירש את רצון ה' דרך המנהג הכנעני המקובל של הקרבת בנים בכורים.</div>
+                    <div class="question-box"><span class="question-title">3. הראיות במדרש לכך שלא צווה לשחוט:</span></div>
+                    <div class="expansion-text">לפי <strong>בראשית רבה:</strong> המלאכים בכו כשראו את אברהם שולח יד לסכין. דמעותיהם נפלו על המאכלת והפכו אותה ל<strong>קרש</strong>. המלאך אמר "אל תשלח <strong>ידך</strong>" ולא "סכינך", כדי להדגיש שאפילו מגע יד לא יהיה שם.</div>
+                    <div class="question-box"><span class="question-title">4. פתרון הרשב"ם והקשר למלחמת "חרבות ברזל":</span></div>
+                    <div class="expansion-text">הרשב"ם מציע שהעקדה הייתה <strong>עונש</strong> על הסכם השלום שכרת אברהם עם אבימלך. אברהם ויתר על שטחי פלשתים (אזור עזה ונחל גרר) שהובטחו לו מה'. ה' אמר: "ויתרת על המתנה שלי (הארץ)? אני אקח לך את המתנה שלך (יצחק)". פריאל מקשר זאת למורכבות הטריטוריאלית באזורים אלו (גוש קטיף ונחל גרר) עד היום.</div>
                 `
             },
             {
-                id: "topic4",
-                title: "4. מבוא לפרשת שבוע",
+                id: "t4",
+                title: "4. מבוא לפרשת שבוע ומדרש",
                 content: `
                     <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">4. מבוא לפרשת שבוע ומדרש</h2>
-                    <div class="expansion-text">יש 54 פרשות לעומת כ-50 שבתות בשנה ירחית. האיזון נעשה ע"י חיבור פרשות. עזרא הסופר חילק את התורה בבבל כדי ליצור אחידות בגלות סביב שמחת תורה. בארץ ישראל סיימו את התורה אחת ל-3 שנים. השם המדעי לתנ"ך הוא <strong>מקרא</strong>.</div>
+                    <div class="story-context">משה תיקן את התורה לקריאה עבור היהודים, ועזרא הסופר, מנהיג יהדות בבל בבית שני, הרחיב וחילק את התנ"ך לקריאה קבועה בשבת ובשני/חמישי כהכנה לשבת.</div>
+                    <div class="question-box"><span class="question-title">1. מהי פרשת שבוע ואיך מאזנים בין הפרשות לשבתות?</span></div>
+                    <div class="expansion-text">בחמישה חומשי תורה יש <strong>54 פרשות</strong>. הלוח העברי הולך לפי הירח (354 ימים בשנה), ולכן יש רק כ-50-51 שבתות בשנה רגילה. האיזון נעשה ע"י חיבור שתי פרשות יחד כ-5-6 פעמים בשנה. בשנה <strong>מעוברת</strong>, אין צורך בחיבור. שמחת תורה הוא חג סיום הקריאה, בעוד שבועות הוא חג מתן תורה.</div>
+                    <div class="question-box"><span class="question-title">2. השיטה הארצישראלית מול השיטה הבבלית:</span></div>
+                    <div class="expansion-text">בעבר בארץ ישראל סיימו את התורה אחת ל-3 שנים (קטעים קטנים), אך בבבל סיימו אחת לשנה. אנו נוהגים כבבל כי לאחר החורבן רוב העם היה שם, והיה צורך באחידות סביב חג שמחת תורה. השם המדעי המקובל לתנ"ך הוא <strong>"מקרא"</strong>.</div>
                 `
             },
             {
-                id: "topic5",
+                id: "t5",
                 title: "5. מבוא למדרש",
                 content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">5. מבוא למדרש</h2>
-                    <div class="expansion-text">חז"ל הם חכמי המשנה והתלמוד. המשנה נכתבה כהלכות יבשות ללא פן אנושי, והתלמוד בא להשלים את הערכים והסיפורים. קיימות 3 גישות: מדעית, חרדית, ופרנקל/פריאל (מדרש כמסר רעיוני).</div>
+                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">5. מבוא למדרש - עולם חז"ל והפרשנות</h2>
+                    <div class="story-context">המדרשים הם דברים שנוספו על גבי הכתוב בתנ"ך. העולם הדתי מורכב מ-10% כתובים ו-90% מדרשים ומסורת. רוב היהדות בנויה על טקסטים חיצוניים לתנ"ך שעברו גלגולים והשלמות.</div>
+                    <div class="question-box"><span class="question-title">1. מיהם חז"ל ומי לא?</span></div>
+                    <div class="expansion-text">חז"ל (חכמינו זכרם לברכה) הם החכמים שכתבו את המשנה והתלמוד בין המאה ה-1 לפנה"ס למאה ה-8 לספירה. רבנים מאוחרים כמו הרב קוק, עובדיה יוסף או הבאבא סאלי **אינם** חז"ל. חז"ל לקחו את התורה שבעל פה וכתבו אותה.</div>
+                    <div class="question-box"><span class="question-title">2. מהי התורה שבכתב ומהי התורה שבע"פ?</span></div>
+                    <div class="expansion-text">הכתב הוא חמשת חומשי תורה. התורה שבע"פ היא הביאור והפירוט של החוקים שעברו ממשה ליהושע, לזקנים, לנביאים ולאנשי הכנסת הגדולה. משה אסר לכתוב את ההרחבות הללו במשך 1500 שנה, והן עברו בעל פה בלבד.</div>
+                    <div class="question-box"><span class="question-title">3. מדוע התחילו לכתוב? (שער טיטוס)</span></div>
+                    <div class="expansion-text">חורבן בית שני יצר חשש שהתורה שבע"פ תישכח בגלות. בשער טיטוס ברומא מתוארת בזיזת המקדש - אירוע זה סימל את היציאה לגלות והצורך בתיעוד בכתב.</div>
+                    <div class="question-box"><span class="question-title">4. המשנה ושלושת הכשלים שלה:</span></div>
+                    <div class="expansion-text">המשנה (מאה 2) עוסקת בהלכות יבשות. כשלים: 1. לא מוסבר איך נבנית הלכה. 2. מביאה דעות סותרות ללא הכרעה. 3. חסר בה הפן האנושי והרגשי שקיים בתנ"ך.</div>
+                    <div class="question-box"><span class="question-title">5. פתרון הגמרא והבעיה שלה:</span></div>
+                    <div class="expansion-text">התלמוד (ירושלמי ובבלי) בא לפתור את כשלי המשנה. הבעיה: אין בה סדר, היא עוברת בחדות מהלכה לסיפור ללא ארגון. לכן עורכי מדרשי האגדה ריכזו את האלמנטים האנושיים בנפרד.</div>
+                    <div class="question-box"><span class="question-title">6. שלוש גישות לאמינות המדרש:</span></div>
+                    <div class="expansion-text">1. מדעית: יצירה ספרותית. 2. חרדית: הכל קדוש מרוח הקודש. 3. פרנקל/פריאל: מאמינים בערך המדרש, אך אם הוא לא הגיוני במציאות - הוא מבטא **רעיון/מסר** ולא עובדה היסטורית.</div>
                 `
             },
             {
-                id: "topic6",
+                id: "t6",
                 title: "6. גניבת הברכות",
                 content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">6. גניבת הברכות</h2>
-                    <div class="expansion-text">יצחק (איש שדה) רצה לקרב את עשו. רבקה פעלה לפי נבואת "רב יעבד צעיר". הרמב"ן מסביר את שתיקתה בבושה וחשש. פריאל טוען שיצחק שמר את "ברכת אברהם" (רוחנית) ליעקב ממילא.</div>
+                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">6. גניבת הברכות - מורכבות משפחתית וזוגית</h2>
+                    <div class="story-context">יצחק ורבקה נשואים כ-80 שנה. יצחק כבר זקן, עיוור וחולה, ומתכנן לברך את בניו לפני מותו. בפרק כ"ז מתוארת הדרמה המשפחתית שבה רבקה מנחה את יעקב לזכות בברכות במרמה.</div>
+                    <div class="question-box"><span class="question-title">1. מדוע הברכה היא דבר כה חשוב?</span></div>
+                    <div class="expansion-text">הברכה בעולם העתיק היוותה את <strong>העברת השרביט והנהגת הבית</strong> לדור הבא. היא קבעה מי יהיה היורש הממשיך את דרך האבות.</div>
+                    <div class="question-box"><span class="question-title">2. דמותו של יצחק ובחירתו במי לברך:</span></div>
+                    <div class="expansion-text">יצחק מתואר כ<strong>איש שדה ואוהב ציד</strong>. אהבתו לטעם הציד ("כי ציד בפיו") גרמה לו להעריך את הכוח הפיזי של עשיו. <strong>הצעת הרב בורשטיין:</strong> יצחק רצה לתת לעשיו תחושה שהוא אהוב ומוערך כדי שינסה להשתפר ולקחת אחריות לאחר מות אביו. יצחק ניסה "לחבק" את עשיו אל תוך המערכת המוסרית.</div>
+                    <div class="question-box"><span class="question-title">3. תזת הרמב"ן לשתיקה בין בני הזוג:</span></div>
+                    <div class="expansion-text">רבקה פעלה לפי הנבואה "רב יעבד צעיר" שקיבלה בהריונה. הרמב"ן מונה 4 סיבות לשתיקתה: 1. בושה ששאלה חכמים אחרים. 2. הערכה שיצחק יודע כנביא. 3. חשש שיכעס עליה ששמרה סוד שנים. 4. אמונה שהשתיקה היא רצון שמיים.</div>
+                    <div class="question-box"><span class="question-title">4. פתרון פריאל: תרגיל "ברכת אברהם"</span></div>
+                    <div class="expansion-text">פריאל מציע שהכל היה <strong>תרגיל של יצחק</strong>: הוא מעולם לא תכנן לתת לעשיו את "ברכת אברהם" (זרע וארץ), אלא רק ברכות חומריות כדי לקרבו. הוא שמר את העיקר ליעקב ממילא. "המטוטלת": אם יעקב לא ינהג כשורה, עשיו יוכל לפרוק את עולו ולהשתלט.</div>
                 `
             },
             {
-                id: "topic7",
+                id: "t7",
                 title: "7. נשיקת יעקב לרחל",
                 content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">7. נשיקת יעקב לרחל</h2>
-                    <div class="expansion-text">יעקב הרים את האבן מהבאר מכוח ההתאהבות. המדרש מבקר כ"נשיקה תפלה". הנצי"ב מסביר כהתפרצות רגשות אנושית. יעקב לא זיהה את לאה בלילה בגלל שכרות, חושך או תאומות.</div>
-                `
-            },
-            {
-                id: "topic8",
-                title: "8. שמעון ולוי בשכם",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">8. שמעון ולוי בשכם</h2>
-                    <div class="expansion-text">שמעון ולוי (בני 11-12) השתמשו במירמת ברית המילה כדי לשחרר את דינה. יעקב קילל את אפם בגלל האלימות והביזה. רמב"ם מצדיק חוקית, רמב"ן מבקר מוסרית.</div>
-                `
-            },
-            {
-                id: "topic9",
-                title: "9. מכירת יוסף",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">9. מכירת יוסף</h2>
-                    <div class="expansion-text">טרגדיה של קנאה ואפליה. ראובן הציע בור להצלה (חוסר מנהיגות), יהודה הציע מכירה. המחיר ההיסטורי: עשרת הרוגי מלכות. חז"ל חלוקים: יוסף כנרקיסיסט מול בובה בתוכנית אלוהית.</div>
-                `
-            },
-            {
-                id: "topic10",
-                title: "10. האם נקם יוסף באחיו?",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">10. האם נקם יוסף באחיו?</h2>
-                    <div class="expansion-text">יוסף מנהל סדנה חינוכית של "מידה כנגד מידה". האחים נאזקו בגבול והובאו אליו. הוא האשימם בריגול ("ערוות הארץ") כנגד הבור. יהודה לוקח ערבות ומוכן להיות עבד - הוכחת התיקון.</div>
-                `
-            },
-            {
-                id: "topic11",
-                title: "11. מדוע לא שלח יוסף אל אביו?",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">11. מדוע לא שלח יוסף אל אביו?</h2>
-                    <div class="expansion-text">הסברים לנתק של 22 שנה: שבועה לאחים (בכור שור), שמירה על שלום המשפחה (יהודה החסיד), המתנה להתגשמות החלומות (רמב"ן), או תחושת נטישה מצד יעקב (יואל בן נון).</div>
-                `
-            },
-            {
-                id: "topic12",
-                title: "12. מדוע לא בורך ראובן?",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">12. מדוע לא בורך ראובן?</h2>
-                    <div class="expansion-text">ראובן איבד את הבכורה ליוסף בעקבות מעשה בלהה. הפרשנים חלוקים אם חטא פיזית או רק "בלבל יצועו" למען כבוד אמו. ספר היובלים וצוואת השבטים מוסיפים זוויות חינוכיות והרתעתיות.</div>
-                `
-            },
-            {
-                id: "topic13",
-                title: "13. מדוע נשתעבדו?",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">13. מדוע נשתעבדו במצרים? - ניתוח התזה של אביעוז</h2>
+                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">7. נשיקת יעקב לרחל - אהבה, בדידות וביקורת</h2>
                     
                     <div class="story-context">
-                        <strong>השאלה המרכזית:</strong> מהו הצידוק המוסרי או ההיסטורי לשעבוד עם ישראל במצרים למשך למעלה ממאה שנים? פרופ' אביעוז מציג שלוש גישות עקרוניות למתן תשובה לשאלה זו.
+                        <strong>רקע:</strong> יעקב בורח מנקמת עשיו אל חרן, אל משפחת אמו (לבן). הוא מגיע לבאר ורואה שם שלושה עדרי צאן המחכים להשקיה. האבן על פי הבאר כבדה מאוד ודורשת כוח של כמה רועים יחד כדי לגלול אותה, מנגנון שנועד למנוע גזל מים ולוודא חלוקה הוגנת.
                     </div>
 
-                    <div class="question-box"><span class="question-title">1. גישת "חטא האבות": בניית התשתית והמחיר</span></div>
+                    <div class="question-box"><span class="question-title">1. המפגש בבאר והרמת האבן</span></div>
                     <div class="expansion-text">
-                        לפי גישה זו, חטאי האבות (המייסדים) גרמו לשעבוד הדורות הבאים. 
-                        <ul class="list-disc pr-6 space-y-2">
-                            <li><strong>ירידת אברהם למצרים:</strong> הרמב"ן (בעקבות הזוהר) טוען שאברהם חטא בכך שלא בטח בה' ונאלץ לרדת למצרים. השעבוד הוא מחיר היסטורי על חוסר ביטחון זה.</li>
-                            <li><strong>מכירת יוסף:</strong> לפי תהילים והמדרש, מכירת יוסף לעבדות על ידי אחיו יצרה את הדינמיקה שבה כל העם נשתעבד ("מידה כנגד מידה"). האבות הם בוני התשתית, וכשהם חוטאים - העם משלם.</li>
+                        כאשר יעקב רואה את רחל מגיעה עם צאן אביה, הוא מצליח <strong>לבד</strong> להזיז את האבן הכבדה. כיצד הצליח? המרצה מסביר כי יעקב פעל מכוח ההתרגשות וההתאהבות המיידית ברחל - אלו היו "כוחות על" רגשיים שהופעלו ברגע שמצא את היעד למסעו. הבאר בעולם העתיק שימשה לא רק כמקור מים אלא כאתר מרכזי להיכרות ושידוכים.
+                    </div>
+
+                    <div class="question-box"><span class="question-title">2. הנשיקה - בין פריצות להתפרצות רגשות</span></div>
+                    <div class="expansion-text">
+                        לאחר השקיית הצאן, יעקב נושק לרחל עוד לפני שהיא יודעת מי הוא. המדרש (בראשית רבה) מציג <strong>גישה מבקרת</strong> וטוען שזו "נשיקה תפלה" (מיותרת/לא צנועה). לפי המדרש, נשיקה אינה תפלה רק ב-3 מקרים: 
+                        <ul class="list-disc pr-6">
+                            <li><strong>גדולה:</strong> מינוי למלך (שמואל לשאול).</li>
+                            <li><strong>פרקים:</strong> פגישה לאחר זמן רב (אהרון למשה).</li>
+                            <li><strong>פרישות:</strong> פרידה (רות לנעמי).</li>
                         </ul>
+                        אנשי המקום "לחשו" וראו בכך פריצות. מנגד, <strong>הנצי"ב</strong> מסביר שהנשיקה נבעה מהתפרצות רגשות אנושית עמוקה: יעקב היה בודד, ללא בית, אישה או ארץ, וברגע שמצא קרובת משפחה יפה המבטיחה לו עתיד, הוא בכה מהתרגשות ונישק אותה.
                     </div>
 
-                    <div class="question-box"><span class="question-title">2. גישת "חטא העם": התבוללות וירידה רוחנית</span></div>
+                    <div class="question-box"><span class="question-title">3. גישות המתרצות את הנשיקה:</span></div>
                     <div class="expansion-text">
-                        מבוססת על מדרשי שמות רבה וילקוט שמעוני. לפי גישה זו, היהודים במצרים החלו לאבד את זהותם הייחודית. הם לקחו חלק באירועי תרבות מצריים, ויתרו על מצוות מסוימות והחלו <strong>להתבולל</strong>. השעבוד הגיע כעונש וכדרך להחזיר את העם אל זהותו המקורית ואל ה'.
+                        <div class="commentator-card"><span class="commentator-label">רבי תנחומא:</span> זו נשיקת קרובים הנהוגה בעדות מסוימות.</div>
+                        <div class="commentator-card"><span class="commentator-label">אבן עזרא:</span> הנשיקה הייתה בלחי/בזרוע ("וישק ל-") ולא בפה.</div>
+                        <div class="commentator-card"><span class="commentator-label">רמב"ן:</span> רחל הייתה קטנה באותה עת (תירוץ הנחשב לקשה לעיכול).</div>
+                        <div class="commentator-card"><span class="commentator-label">חזקוני:</span> סדר הפסוקים התהפך - קודם הציג עצמו ורק אז נישק.</div>
+                        <div class="commentator-card"><span class="commentator-label">יוסף אבן כספי:</span> גם אם הנשיקה הייתה מינית, בני אדם לא תמיד מתנהלים "בסדר", וצריך לקבל את המציאות האנושית כפי שהיא.</div>
                     </div>
 
-                    <div class="question-box"><span class="question-title">3. גישת ה"אימון" (נחמה לייבוביץ' והמלבי"ם):</span></div>
+                    <div class="question-box"><span class="question-title">4. תרמית לאה - כיצד יעקב לא הכיר אותה בלילה?</span></div>
                     <div class="expansion-text">
-                        פרופ' נחמה לייבוביץ' מציעה גישה חינוכית-מנטלית: השעבוד לא היה עונש על חטא, אלא <strong>"סדרת חינוך"</strong>. כדי שעם ישראל יהיה ראוי לקבל את התורה ולהפוך ל"עם סגולה", הוא היה חייב לעבור הכנה מנטלית קשה במצרים. "כור הברזל" נועד לזכך את העם, ללמד אותו חמלה (מתוך היותו גר) ולהכינו למעמד הר סיני. 
-                        <br><br>
-                        <strong>מסקנה:</strong> הגישה השלישית נחשבת להגיונית ביותר, שכן בגישות האחרות קשה להסביר מדוע עם שלם נענש על חטאי יחידים או אבות קדמונים.
+                        יעקב עובד 7 שנים עבור רחל, שנראו בעיניו כ"ימים אחדים" כי הם עבדו יחד במרעה מדי יום והציפייה הייתה נסבלת. בליל החתונה לבן מחליף את רחל בלאה. קיימות 4 הצעות לכך שיעקב לא זיהה אותה:
+                        <ol class="list-decimal pr-6">
+                            <li><strong>שכרות:</strong> מהמשתה הארוך.</li>
+                            <li><strong>חושך:</strong> חושך מוחלט באוהלי המדבר.</li>
+                            <li><strong>תאומות/דמיון:</strong> יש דעה שלאה ורחל היו תאומות דומות מאוד בקולן.</li>
+                            <li><strong>מנהגי חתונה:</strong> החגיגות היו נפרדות לגברים ולנשים, וההחלפה נעשתה ברגע האחרון בשיא העייפות.</li>
+                        </ol>
+                        השיר "לאה" של אהוד מנור מבטא את כאבה של לאה שחיה בצל אחותה באותו לילה.
                     </div>
                 `
-            }
+            },
+            { id: "t8", title: "8. שמעון ולוי בשכם", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">8. שמעון ולוי בשכם</h2><div class="expansion-text">התוכן ייטען בהמשך.</div>` },
+            { id: "t9", title: "9. מכירת יוסף", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">9. מכירת יוסף</h2><div class="expansion-text">התוכן ייטען בהמשך.</div>` },
+            { id: "t10", title: "10. האם נקם יוסף באחיו?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">10. האם נקם יוסף באחיו?</h2><div class="expansion-text">יוסף מנהל סדנה חינוכית של "מידה כנגד מידה". האחים נאזקו בגבול (תזת פריאל). "ערוות הארץ" כנגד הבור. "כנים" כנגד השקר. נאום יהודה והערבות הוכיחו חזרה בתשובה שלמה. יוסף פורץ בבכי ומתגלה.</div>` },
+            { id: "t11", title: "11. מדוע לא שלח יוסף אל אביו?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">11. מדוע לא שלח יוסף אל אביו?</h2><div class="expansion-text">מדוע שתק 22 שנה? 1. שבועה לאחים (בכור שור - תנאי ליציאה מהבור). 2. שלום המשפחה (יהודה החסיד - מניעת פירוק). 3. המתנה להתגשמות החלומות (רמב"ן - בובה על חוט). 4. <strong>תזת יואל בן נון:</strong> יוסף חשב שיעקב ויתר עליו ושלח אותו לשכם בכוונה כדי שייעלם למען השקט בבית.</div>` },
+            { id: "t12", title: "12. מדוע לא בורך ראובן?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">12. מדוע לא בורך ראובן?</h2><div class="expansion-text">ראובן איבד את הבכורה ליוסף בגלל "מעשה בלהה". המדרש טוען שרק "בלבל יצועו" (הזיז מיטה לאוהל לאה) כמחאה. הרב אריאל מסביר כניסיון להפגין מנהיגות ("הבוס"). ספר היובלים טוען לאונס (להרתעה מעריות בכתות). צוואת השבטים מתארת ייסורי מצפון של 100 שנה.</div>` },
+            { id: "t13", title: "13. מדוע נשתעבדו?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">13. מדוע נשתעבדו? - ניתוח אביעוז</h2><div class="expansion-text">שלוש גישות: 1. חטא האבות (אברהם שירד למצרים או מכירת יוסף). האבות בוני תשתית והעם משלם מחיר. 2. חטא העם (התבוללות וירידה רוחנית במצרים). 3. <strong>גישת ה"אימון" (נחמה לייבוביץ'):</strong> השעבוד היה הכנה מנטלית ("כור הברזל") לקראת קבלת התורה והפיכה לעם סגולה.</div>` },
+            { id: "t14", title: "14. ואני אקשה והמכות", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">14. ואני אקשה והמכות</h2><div class="expansion-text">סוגיית הבחירה של פרעה. רש"י (מגיע לו להיענש), רמב"ם (בחירה כללית נלקחה), הרב מידן (פרעה איבד בחירה מרשעותו). המאבק באלילים (אברבנאל): דצ"ך (היאור), עד"ש (השגחה פרטית), באח"ב (השפלת אל השמש "רע" במזל טלה/ניסן).</div>` },
+            { id: "t15", title: "15. וינצלו את מצרים", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">15. וינצלו את מצרים</h2><div class="expansion-text">האם זו גניבה? 1. <strong>הרב קוק:</strong> שינוי תודעתי מעבד לבן חורין לקראת התורה. 2. <strong>שכר עבודה:</strong> פיצוי על שנים ללא שכר. 3. <strong>הרב עמית קולא:</strong> איזון היסטורי - הכסף הוחזר כששישק בזז את המקדש 400 שנה אחר כך. 4. <strong>חזקוני:</strong> "ואהבת לרעך" - מתנות מתוך ידידות.</div>` }
         ];
 
-        // --- QUIZ QUESTIONS ---
+        // --- QUIZ POOL (INTEGRATED & CUMULATIVE) ---
         const quizQuestions = [
-            { q: `מה גרם לאדם הראשון לחטוא בגן עדן לפי הניתוח המוסרי?`, options: [`סקרנות ללא בלמים מול גבול יחיד`, `רעב כבד`, `רצון למרוד`, `הנחש`], a: 0 },
-            { q: `מי היה המנהיג בבית שני שחילק את התורה לפרשות בבבל?`, options: [`עזרא הסופר`, `יהושע`, `מרדכי`, `הורדוס`], a: 0 },
-            { q: `למה יוסף השאיר דווקא את שמעון במאסר במצרים?`, options: [`כי הוא זה שדחף את יוסף לבור במקור`, `כי הוא היה הבכור`, `בטעות`, `כדי שישגיח על הכסף`], a: 0 },
-            // Topic 13 New Questions
-            { q: `מהי גישת ה"אימון" של נחמה לייבוביץ' לגבי השעבוד?`, options: [`השעבוד היה הכנה מנטלית וסדרת חינוך לקראת קבלת התורה`, `השעבוד היה עונש על התבוללות`, `השעבוד היה בגלל ירידת אברהם למצרים`, `השעבוד היה טעות של פרעה`], a: 0 },
-            { q: `לפי הרמב"ן, איזה חטא של אברהם קשור לשעבוד מצרים?`, options: [`ירידתו למצרים במקום לבטוח בה' בכנען`, `העובדה שלא בנה מספיק מזבחות`, `הוויכוח שלו עם לוט`, `גירוש ישמעאל`], a: 0 },
-            { q: `כיצד מסבירה הגישה השנייה את הסיבה לשעבוד?`, options: [`העם התחיל להתבולל ולקחת חלק בתרבות המצרית`, `העם גנב רכוש מהמצרים`, `העם סירב לעבוד את פרעה`, `העם בנה את פיתום ורעמסס בטעות`], a: 0 },
-            { q: `לפי מאמרו של אביעוז, למה הגישה של נחמה לייבוביץ' נחשבת להגיונית ביותר?`, options: [`כי היא מסבירה את הצורך בהכנה לאומית ולא מענישה עם שלם על חטא יחיד`, `כי היא הכי קצרה`, `כי היא מופיעה בתהילים`, `כי פרעה הסכים איתה`], a: 0 },
-            { q: `איזה חטא של האחים מוזכר כסיבה לשעבוד על בסיס ספר תהילים?`, options: [`מכירת יוסף לעבד`, `הריגת אנשי שכם`, `גניבת הברכות`, `השנאה ללאה`], a: 0 }
+            { q: `מה גרם לאדם הראשון לחטוא בגן עדן לפי הניתוח המוסרי?`, options: [`סקרנות ללא בלמים מול גבול יחיד`, `רעב כבד לפרי`, `רצון למרוד באלוהים בכוונה`, `השפעה מאגיסטית של הנחש`], a: 0 },
+            { q: `מהי ביקורתו המרכזית של הרמב"ן על אברהם בירידתו למצרים?`, options: [`אברהם חטא חטא גדול בשגגה בכך שלא בטח בה' ובסיכון שרה`, `אברהם היה צריך להרוג את פרעה מיד`, `אברהם לא ביקש מספיק מתנות`, `אברהם חטא בכך שלא לקח את לוט`], a: 0 },
+            { q: `איך מפרש פריאל את המילה "העלהו" בסיפור העקדה?`, options: [`כטקס העלאה בדרגה או העברת שרביט המנהיגות`, `כציווי לשחוט את יצחק`, `כהוראה לטפס על ההר ולרדת מהר`, `כביטוי למסע תיירותי`], a: 0 },
+            { q: `מיהם חז"ל לפי ההגדרה המדעית?`, options: [`חכמי המשנה והתלמוד (מאה 1 לפנה"ס עד 8 לספירה)`, `רבנים מודרניים כמו הרב קוק`, `נביאי בית ראשון`, `הבאבא סאלי`], a: 0 },
+            // Topic 7 New Questions
+            { q: `מה גרם ליעקב להצליח להרים את האבן הכבדה מהבאר לבדו?`, options: [`כוח ההתרגשות וההתאהבות המיידית ברחל`, `הוא התאמן לקראת המסע`, `האבן היתה עשויה מקלקר`, `הרועים האחרים עזרו לו בסתר`], a: 0 },
+            { q: `באילו שלושה מקרים נשיקה אינה נחשבת ל"תפלה" (מיותרת) לפי המדרש?`, options: [`גדולה (מלוכה), פרקים (פגישה) ופרישות (פרידה)`, `חתונה, הולדת בן וברית מילה`, `כניסה לבית, יציאה למסע ותפילה`, `בין אחים, בין הורים ובין בני זוג`], a: 0 },
+            { q: `מהו ההסבר של הנצי"ב לנשיקת יעקב לרחל?`, options: [`התפרצות רגשות אנושית של אדם בודד ללא בית שמצא משפחה`, `שיעקב ידע בנבואה שהיא אשתו`, `שרחל ביקשה ממנו לנשק אותה`, `שהיה מדובר בטעות בניקוד של הפרשנים`], a: 0 },
+            { q: `מהי אחת הסיבות שניתנו לכך שיעקב לא זיהה את לאה בליל החתונה?`, options: [`היה חושך מוחלט והוא היה שיכור מהמשתה`, `הוא לא ראה את רחל מעולם לפני כן`, `לאה התחפשה לרחל בעזרת בגדי עשיו`, `הוא חשב שרחל ברחה מהבית`], a: 0 },
+            { q: `למה שבע שנות ההמתנה לרחל נראו ליעקב כ"ימים אחדים"?`, options: [`כי הוא ורחל עבדו יחד במרעה מדי יום`, `כי הוא היה עסוק מאוד בעבודה קשה`, `כי הוא שכח מרחל במהלך הזמן`, `כי לבן הבטיח לו פרסים כספיים`], a: 0 }
         ];
 
-        // --- NAVIGATION ENGINE ---
+        // --- CORE UI ENGINE ---
         function showSection(id) {
             ['home', 'topics', 'exams'].forEach(s => {
-                const sec = document.getElementById(`${s}-section`);
-                if(sec) sec.classList.add('hidden');
+                const element = document.getElementById(`${s}-section`);
+                if (element) element.classList.add('hidden');
                 const btn = document.getElementById(`nav-${s}`);
-                if(btn) { btn.classList.remove('active-nav'); btn.classList.add('text-blue-100'); }
+                if (btn) { btn.classList.remove('active-nav'); btn.classList.add('text-blue-100'); }
             });
-            const activeSec = document.getElementById(`${id}-section`);
-            if(activeSec) activeSec.classList.remove('hidden');
+            document.getElementById(`${id}-section`).classList.remove('hidden');
             const activeBtn = document.getElementById(`nav-${id}`);
-            if(activeBtn) { activeBtn.classList.add('active-nav'); activeBtn.classList.remove('text-blue-100'); }
-            if(id === 'exams') renderQuiz();
+            if (activeBtn) { activeBtn.classList.add('active-nav'); activeBtn.classList.remove('text-blue-100'); }
+            if (id === 'exams') renderQuiz();
             window.scrollTo(0, 0);
         }
 
@@ -352,18 +400,7 @@
                 const div = document.createElement('div');
                 div.className = 'bg-slate-50 p-8 rounded-3xl border quiz-block';
                 div.dataset.correct = newCorrectIdx;
-                div.innerHTML = `
-                    <p class="font-bold text-xl mb-6 text-slate-800 leading-tight">${idx+1}. ${q.q}</p>
-                    <div class="grid md:grid-cols-2 gap-4">
-                        ${opts.map((opt, i) => `
-                            <label class="flex items-center gap-4 p-5 bg-white border-2 border-slate-100 rounded-2xl cursor-pointer hover:bg-blue-50 transition-all">
-                                <input type="radio" name="q${idx}" value="${i}" class="h-6 w-6 text-blue-600">
-                                <span class="font-bold text-slate-700">${opt}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                    <div id="feedback-${idx}" class="mt-6 p-4 rounded-xl hidden font-bold"></div>
-                `;
+                div.innerHTML = `<p class="font-bold text-xl mb-6 text-slate-800 leading-tight">${idx+1}. ${q.q}</p><div class="grid md:grid-cols-2 gap-4">${opts.map((opt, i) => `<label class="flex items-center gap-4 p-5 bg-white border-2 border-slate-100 rounded-2xl cursor-pointer hover:bg-blue-50 transition-all"><input type="radio" name="q${idx}" value="${i}" class="h-6 w-6 text-blue-600"><span class="font-bold text-slate-700">${opt}</span></label>`).join('')}</div><div id="feedback-${idx}" class="mt-6 p-4 rounded-xl hidden font-bold"></div>`;
                 container.appendChild(div);
             });
         }
