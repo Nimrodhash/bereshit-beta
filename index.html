@@ -1,427 +1,1155 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>סוגיות מוסריות בתנ"ך - הפורטל המלא והמצטבר</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
-        .hidden { display: none; }
-        .active-nav { border-bottom: 4px solid #ffffff; color: #ffffff; }
-        
-        .sidebar-item { 
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border-right: 4px solid transparent;
-        }
-        .sidebar-item:hover { background-color: #f1f5f9; border-right-color: #94a3b8; }
-        .sidebar-item.selected { background-color: #eff6ff; border-right-color: #1e40af; color: #1e40af; font-weight: 700; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סוגיות מוסריות בספר בראשית</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f5efe0;
+    --parchment-dark: #e8dfc8;
+    --ink: #1a1208;
+    --ink-light: #3d2e12;
+    --gold: #b8860b;
+    --gold-light: #d4a82a;
+    --gold-pale: #f0e0a0;
+    --crimson: #8b1a1a;
+    --forest: #2d4a2d;
+    --lapis: #1a3a6b;
+    --shadow: rgba(26, 18, 8, 0.18);
+  }
 
-        .question-box { 
-            background-color: #f0f9ff; 
-            border-right: 5px solid #0284c7; 
-            padding: 1.5rem; 
-            margin-top: 2.5rem; 
-            margin-bottom: 1.25rem; 
-            border-radius: 0 0.75rem 0.75rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .question-title { font-weight: 800; color: #0c4a6e; font-size: 1.25rem; }
-        .expansion-text { font-size: 1.15rem; line-height: 1.9; color: #334155; margin-bottom: 1.5rem; }
-        
-        .commentator-card { 
-            background-color: #ffffff; 
-            border: 1px solid #e2e8f0; 
-            border-right: 4px solid #2563eb;
-            padding: 1.25rem; 
-            border-radius: 0.5rem; 
-            margin-top: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-        .commentator-label { color: #1e40af; font-weight: 800; display: block; margin-bottom: 0.3rem; }
-        
-        .story-context {
-            background-color: #fffbeb;
-            border: 1px dashed #d97706;
-            padding: 1.25rem;
-            border-radius: 0.75rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-            color: #92400e;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
-    </style>
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Frank Ruhl Libre', serif;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Parchment texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(184,134,11,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(139,26,26,0.04) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: relative;
+    text-align: center;
+    padding: 60px 20px 50px;
+    background: linear-gradient(180deg, #1a1208 0%, #2d1e0a 60%, transparent 100%);
+    overflow: hidden;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  }
+
+  .header-ornament {
+    font-size: 28px;
+    color: var(--gold);
+    letter-spacing: 12px;
+    display: block;
+    margin-bottom: 18px;
+    opacity: 0.8;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    color: var(--gold-light);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-shadow: 0 2px 20px rgba(184,134,11,0.4);
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    color: rgba(245,239,224,0.7);
+    font-size: 1.15rem;
+    margin-bottom: 30px;
+  }
+
+  /* ─── NAV TABS ─── */
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 24px 20px;
+    background: var(--parchment-dark);
+    border-bottom: 2px solid rgba(184,134,11,0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+
+  .tab-btn {
+    padding: 9px 18px;
+    border: 1.5px solid rgba(184,134,11,0.4);
+    background: transparent;
+    color: var(--ink-light);
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.25s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .tab-btn:hover {
+    background: rgba(184,134,11,0.1);
+    border-color: var(--gold);
+    color: var(--ink);
+  }
+
+  .tab-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(184,134,11,0.35);
+  }
+
+  /* ─── MAIN LAYOUT ─── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.4s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION TITLES ─── */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--crimson);
+    text-align: center;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .section-divider {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin: 0 auto 36px;
+    letter-spacing: 10px;
+  }
+
+  /* ─── TOPIC CARD ─── */
+  .topic-card {
+    background: #fff;
+    border: 1px solid rgba(184,134,11,0.2);
+    border-right: 4px solid var(--gold);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 16px var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .topic-card:hover {
+    box-shadow: 0 6px 28px rgba(26,18,8,0.14);
+    transform: translateY(-2px);
+  }
+
+  .topic-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--crimson);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .topic-card h3 .icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .topic-card p, .topic-card li {
+    font-size: 0.97rem;
+    line-height: 1.85;
+    color: #2a1e0e;
+    margin-bottom: 8px;
+  }
+
+  .topic-card ul {
+    padding-right: 20px;
+  }
+
+  /* ─── COMMENTATORS GRID ─── */
+  .commentators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 8px;
+  }
+
+  .commentator-card {
+    background: linear-gradient(135deg, #fffdf5 0%, #faf4e4 100%);
+    border: 1px solid rgba(184,134,11,0.25);
+    border-top: 3px solid var(--lapis);
+    border-radius: 4px;
+    padding: 20px 20px 16px;
+    transition: box-shadow 0.2s;
+  }
+
+  .commentator-card:hover { box-shadow: 0 4px 18px var(--shadow); }
+
+  .commentator-card .name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--lapis);
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .commentator-card .dates {
+    font-size: 0.78rem;
+    color: #8a7050;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .commentator-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #2a1e0e;
+  }
+
+  /* ─── VERDICT BADGES ─── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-right: 6px;
+    margin-bottom: 8px;
+  }
+  .badge-critical { background: #ffe0e0; color: #8b1a1a; border: 1px solid #e8b0b0; }
+  .badge-defense  { background: #e0ffe0; color: #1a6b1a; border: 1px solid #b0e8b0; }
+  .badge-neutral  { background: #e0eaff; color: #1a3a6b; border: 1px solid #b0c8e8; }
+  .badge-complex  { background: #fff4d6; color: #7a5200; border: 1px solid #e8d080; }
+
+  /* ─── QUESTIONS SECTION ─── */
+  .question-block {
+    background: #fff;
+    border: 1px solid rgba(184,134,11,0.2);
+    border-right: 4px solid var(--forest);
+    border-radius: 4px;
+    padding: 22px 28px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 10px var(--shadow);
+  }
+
+  .question-block .q-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.82rem;
+    color: var(--forest);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .question-block .question-text {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .answer-toggle {
+    background: none;
+    border: 1.5px solid var(--forest);
+    color: var(--forest);
+    padding: 7px 16px;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .answer-toggle:hover {
+    background: var(--forest);
+    color: #fff;
+  }
+
+  .answer-content {
+    display: none;
+    margin-top: 14px;
+    padding: 16px;
+    background: #f8f5ee;
+    border-right: 3px solid var(--gold);
+    border-radius: 2px;
+    font-size: 0.94rem;
+    line-height: 1.8;
+    color: #2a1e0e;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .answer-content.open { display: block; }
+
+  /* ─── SUMMARY TABLE ─── */
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 0.9rem;
+  }
+
+  .summary-table th {
+    background: var(--ink);
+    color: var(--gold-light);
+    padding: 12px 16px;
+    text-align: right;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
+  }
+
+  .summary-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .summary-table tr:nth-child(even) td { background: rgba(245,239,224,0.5); }
+  .summary-table tr:hover td { background: rgba(184,134,11,0.08); }
+
+  /* ─── TIMELINE ─── */
+  .timeline {
+    position: relative;
+    padding-right: 36px;
+    margin-top: 10px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--crimson), var(--lapis));
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 28px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    right: -22px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    background: var(--gold);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .timeline-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--crimson);
+    margin-bottom: 6px;
+  }
+
+  .timeline-item p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #2a1e0e;
+  }
+
+  /* ─── TOPIC INDEX (overview) ─── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .overview-item {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid rgba(184,134,11,0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 3px solid var(--gold);
+    text-align: center;
+  }
+
+  .overview-item:hover {
+    box-shadow: 0 4px 20px var(--shadow);
+    transform: translateY(-3px);
+    border-bottom-color: var(--crimson);
+  }
+
+  .overview-item .ov-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+  .overview-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--crimson);
+    margin-bottom: 6px;
+  }
+  .overview-item p { font-size: 0.83rem; color: #5a4530; line-height: 1.5; }
+
+  /* ─── MIDRASH BLOCK ─── */
+  .midrash-block {
+    background: linear-gradient(135deg, #1a1208, #2d1e0a);
+    color: var(--gold-pale);
+    padding: 26px 30px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .midrash-block::before {
+    content: '❝';
+    position: absolute;
+    top: -10px; right: 10px;
+    font-size: 5rem;
+    color: rgba(184,134,11,0.12);
+    font-family: serif;
+  }
+
+  .midrash-block .source {
+    font-size: 0.82rem;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .midrash-block p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 640px) {
+    .commentators-grid { grid-template-columns: 1fr; }
+    .overview-grid { grid-template-columns: 1fr; }
+    .topic-card { padding: 20px; }
+    nav { gap: 6px; }
+    .tab-btn { font-size: 0.82rem; padding: 7px 12px; }
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(184,134,11,0.15);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--crimson));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+  }
+
+  /* Print */
+  @media print {
+    nav, .answer-toggle { display: none; }
+    .section { display: block !important; }
+    .answer-content { display: block !important; }
+  }
+
+  .chip {
+    display: inline-block;
+    background: var(--gold-pale);
+    color: var(--ink-light);
+    border: 1px solid rgba(184,134,11,0.3);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 0.78rem;
+    margin-left: 6px;
+  }
+</style>
 </head>
-<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col">
+<body>
 
-    <!-- Navbar -->
-    <nav class="bg-blue-800 shadow-lg sticky top-0 z-50 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="showSection('home')">
-                    <div class="bg-white text-blue-800 p-2 rounded-xl shadow-md">📜</div>
-                    <span class="text-2xl font-black italic">סוגיות מוסריות <span class="text-blue-200">בתנ"ך</span></span>
-                </div>
-                <div class="flex space-x-reverse space-x-8">
-                    <button onclick="showSection('home')" id="nav-home" class="active-nav py-7 font-bold text-lg border-b-4 border-transparent hover:border-blue-200 transition">בית</button>
-                    <button onclick="showSection('topics')" id="nav-topics" class="py-7 font-bold text-lg text-blue-100 border-b-4 border-transparent hover:border-white transition">חומרי לימוד</button>
-                    <button onclick="showSection('exams')" id="nav-exams" class="py-7 font-bold text-lg text-blue-100 border-b-4 border-transparent hover:border-white transition">תרגול מבחן</button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<header>
+  <span class="header-ornament">✦ ✦ ✦</span>
+  <h1>סוגיות מוסריות בספר בראשית</h1>
+  <p class="subtitle">כלי לימוד אקדמי · לפי הרצאות הקורס ופרשנים</p>
+</header>
 
-    <!-- Home Section -->
-    <header id="home-section" class="hero-gradient text-white py-32 px-6 text-center shadow-inner flex-grow flex items-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-black mb-8 tracking-tight text-white">הפורטל המלא - סוגיות מוסריות</h1>
-            <p class="text-xl md:text-2xl opacity-90 mb-12 font-light max-w-2xl mx-auto leading-relaxed text-white">
-                מאגר מידע מצטבר הכולל את כל חומרי הקורס בפירוט מקסימלי, פסקה אחר פסקה, ללא השמטות. שום דבר לא משתנה, הכל נשמר ומתווסף.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <button onclick="showSection('topics')" class="bg-white text-blue-800 px-12 py-5 rounded-2xl font-black text-xl shadow-2xl hover:bg-slate-50 transition transform hover:-translate-y-1">התחל ללמוד (15 נושאים)</button>
-                <button onclick="showSection('exams')" class="bg-blue-900 text-white border border-blue-400 px-12 py-5 rounded-2xl font-black text-xl hover:bg-blue-950 transition shadow-xl">תרגול שאלות</button>
-            </div>
-        </div>
-    </header>
+<nav>
+  <button class="tab-btn active" onclick="showSection('overview', this)">🏠 סקירה כללית</button>
+  <button class="tab-btn" onclick="showSection('sins', this)">🍎 חטאי בראשית</button>
+  <button class="tab-btn" onclick="showSection('avraham', this)">⚖️ אברהם ושרה</button>
+  <button class="tab-btn" onclick="showSection('akeda', this)">🔥 עקידת יצחק</button>
+  <button class="tab-btn" onclick="showSection('yaakov', this)">🌙 יעקב ובניו</button>
+  <button class="tab-btn" onclick="showSection('yosef', this)">👑 יוסף ואחיו</button>
+  <button class="tab-btn" onclick="showSection('midrash', this)">📜 מדרש וחז"ל</button>
+  <button class="tab-btn" onclick="showSection('questions', this)">❓ שאלות לתרגול</button>
+</nav>
 
-    <!-- Topics Section -->
-    <main id="topics-section" class="max-w-7xl mx-auto px-6 py-12 hidden w-full">
-        <div class="flex flex-col lg:flex-row gap-10">
-            <aside class="lg:w-1/3">
-                <div class="bg-white rounded-2xl shadow-sm border p-4 sticky top-28">
-                    <div class="p-5 border-b mb-4 text-center">
-                        <h3 class="font-black text-slate-900 text-xl">מפת נושאי הלימוד</h3>
-                        <p class="text-sm text-green-600 mt-1 font-bold italic">צבירת מידע פעילה ✅</p>
-                    </div>
-                    <nav class="space-y-1 overflow-y-auto max-h-[60vh]" id="topic-menu"></nav>
-                </div>
-            </aside>
-            <div class="lg:w-2/3">
-                <div id="topic-display" class="bg-white rounded-3xl shadow-sm border p-8 md:p-12 min-h-[600px] transition-all duration-300">
-                    <div class="flex flex-col items-center justify-center h-full py-32 text-center text-slate-400">
-                        <div class="text-7xl mb-6">📂</div>
-                        <h2 class="text-3xl font-black text-slate-800">אנא בחר נושא ללמידה מפורטת</h2>
-                        <p class="max-w-md mx-auto mt-4 text-lg">כל המידע שסיפקת נשמר בתוך כל נושא ללא קיצורים.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+<main>
 
-    <!-- Exam Section -->
-    <main id="exams-section" class="max-w-4xl mx-auto px-6 py-12 hidden w-full">
-        <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-16 border">
-            <h2 class="text-4xl font-black text-center mb-4 text-blue-900">מבחן סיכום מצטבר</h2>
-            <p class="text-center text-slate-500 mb-12 text-lg italic">השאלות מתעדכנות ומתערבבות עם כל נושא חדש שנוסף</p>
-            <div id="quiz-container" class="space-y-10"></div>
-            <div class="mt-20 text-center">
-                <button onclick="checkQuiz()" class="bg-blue-700 text-white px-16 py-6 rounded-2xl font-black text-2xl hover:bg-blue-800 shadow-2xl transition transform active:scale-95">בדוק תוצאות</button>
-            </div>
-            <div id="quiz-result" class="mt-12 p-10 rounded-3xl bg-blue-50 text-blue-900 text-3xl font-black text-center hidden"></div>
-        </div>
-    </main>
+<!-- ═══ OVERVIEW ═══ -->
+<div id="overview" class="section active">
+  <h2 class="section-title">סקירה כללית</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
 
-    <footer class="bg-slate-900 text-slate-500 py-12 mt-auto">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-white font-bold text-xl mb-2">סוגיות מוסריות בתנ"ך</p>
-            <p class="text-sm">נבנה על פי דף הדגשים וסיכומי הקורס המלאים 2026</p>
-        </div>
-    </footer>
+  <div class="topic-card">
+    <h3><span class="icon">📖</span> מהות הקורס</h3>
+    <p>הקורס עוסק בסיפורי ספר בראשית מזווית מוסרית-אנליטית. מטרתו לחשוף את השאלות הקשות העולות מהסיפורים, להבין את מגוון הפרשנים שהתמודדו עמן, ולקשר בין הטקסט המקראי למציאות האנושית-ערכית.</p>
+    <p>שתי הפרשיות הראשונות (בראשית ונח) מהוות <strong>מבוא לאדם</strong> — תצוגה לאן האדם הלא ערכי, הלא מחונך, עלול להידרדר.</p>
+  </div>
 
-    <script>
-        const studyData = [
-            {
-                id: "t1",
-                title: "1. אוסף חטאי בראשית",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">1. אוסף חטאי בראשית - המבוא לאדם והוראות ההפעלה</h2>
-                    <div class="story-context">
-                        ספר בראשית פותח ברצף של חטאים קיצוניים המשמשים כ"הוראות הפעלה" לאנושות. התנ"ך משמש כמראה של העם היהודי, אך הוא מראה מציאות מורכבת של דמויות שאינן מושלמות. שתי הפרשות הראשונות הן מבוא לאדם הלא-ערכי והלא-מחונך, ומראות לאן אדם ללא בלמים מוסריים עלול להידרדר.
-                    </div>
+  <h3 style="font-family:'Playfair Display',serif; color:var(--lapis); margin-bottom:16px; font-size:1.3rem;">נושאי הקורס המרכזיים</h3>
+  <div class="overview-grid">
+    <div class="overview-item" onclick="showSection('sins', document.querySelectorAll('.tab-btn')[1])">
+      <span class="ov-icon">🍎</span>
+      <h4>חטאי בראשית</h4>
+      <p>חטא עץ הדעת, קין והבל, המבול, היציאה מהתיבה, מגדל בבל</p>
+    </div>
+    <div class="overview-item" onclick="showSection('avraham', document.querySelectorAll('.tab-btn')[2])">
+      <span class="ov-icon">⚖️</span>
+      <h4>אברהם ושרה במצרים</h4>
+      <p>האם חטא אברהם? מחלוקת הפרשנים – רמב"ן, רד"ק, חזקוני, אברבנאל, ספורנו</p>
+    </div>
+    <div class="overview-item" onclick="showSection('akeda', document.querySelectorAll('.tab-btn')[3])">
+      <span class="ov-icon">🔥</span>
+      <h4>עקידת יצחק</h4>
+      <p>ביקורת יוסי שריד, קריאת פריאל, פירוש הרשב"ם ומלחמת חרבות ברזל</p>
+    </div>
+    <div class="overview-item" onclick="showSection('yaakov', document.querySelectorAll('.tab-btn')[4])">
+      <span class="ov-icon">🌙</span>
+      <h4>יעקב ובניו</h4>
+      <p>שקר הברכה, נשיקת יעקב לרחל, ראובן ובלהה, שמעון ולוי בשכם</p>
+    </div>
+    <div class="overview-item" onclick="showSection('yosef', document.querySelectorAll('.tab-btn')[5])">
+      <span class="ov-icon">👑</span>
+      <h4>יוסף ואחיו</h4>
+      <p>מכירת יוסף, הנסיון החוזר, הגילוי, שאלת "למה לא שלח"</p>
+    </div>
+    <div class="overview-item" onclick="showSection('midrash', document.querySelectorAll('.tab-btn')[6])">
+      <span class="ov-icon">📜</span>
+      <h4>מדרש וחז"ל</h4>
+      <p>מהו מדרש, שלושת הגישות, תורה שבע"פ, משנה ותלמוד</p>
+    </div>
+  </div>
 
-                    <div class="question-box"><span class="question-title">1. חטא אדם הראשון, למה באמת חוטא?</span></div>
-                    <div class="expansion-text">
-                        החטא אינו נובע מרעב, שכן לאדם וחווה מותר לאכול מכל פירות הגן חוץ מעץ הדעת. החטא נובע מ<strong>חוסר היכולת של האדם להתמודד עם סקרנותו</strong>. האל הציב גבול יחיד כדי לבחון את האיפוק האנושי.
-                        <br><br>
-                        <strong>אנלוגיית חנות הגאדג'טים:</strong> דמיינו אדם שאוהב טכנולוגיה שנכנס לחנות שבה מותר לו להתנסות בכל המכשירים חוץ מגאדג'ט אחד ספציפי שאסור לו לגעת בו - דווקא עליו הוא יתביית. עצם האיסור יוצר משיכה וסקרנות הרסנית, בגלל יצר האדם לרצות את מה שאינו יכול להשיג.
-                    </div>
+  <div class="topic-card">
+    <h3><span class="icon">👥</span> פרשנים מרכזיים בקורס</h3>
+    <table class="summary-table">
+      <tr>
+        <th>שם הפרשן</th>
+        <th>תקופה ומדינה</th>
+        <th>גישה כללית</th>
+      </tr>
+      <tr><td><strong>רמב"ן (נחמנידס)</strong></td><td>ספרד, 1194–1270</td><td>לעיתים מבקר את האבות בחריפות</td></tr>
+      <tr><td><strong>רד"ק</strong></td><td>פרובנס, 1160–1235</td><td>מצדיק בדרך כלל, נשען על הקשר</td></tr>
+      <tr><td><strong>חזקוני</strong></td><td>צרפת, מאה 13</td><td>פרשן פרקטי, רציונלי</td></tr>
+      <tr><td><strong>אברבנאל</strong></td><td>פורטוגל–ספרד–איטליה, 1437–1508</td><td>מעמיק, פילוסופי, בוחן מניעים</td></tr>
+      <tr><td><strong>ספורנו</strong></td><td>איטליה, 1475–1550</td><td>רופא ופרשן, ראייה אנושית</td></tr>
+      <tr><td><strong>רש"ר הירש</strong></td><td>גרמניה, 1808–1888</td><td>פסיכולוגי, מדוקדק בניסוח</td></tr>
+      <tr><td><strong>רשב"ם</strong></td><td>צרפת, 1085–1158</td><td>פשט קפדני, לא מחפש מדרש</td></tr>
+    </table>
+  </div>
+</div>
 
-                    <div class="question-box"><span class="question-title">2. מה חטא קין הכפול?</span></div>
-                    <div class="expansion-text">
-                        קין (עובד אדמה) יוזם מנחה, והבל מביא אחריו - "קוף אחרי בן אדם". ה' מקבל את המנחה של הבל ולא את של קין. המנחה של הבל היא של ה"שני", בעוד היזם המקורי (קין) נדחה. קין מרגיש כעס, קנאה וחוסר צדק.
-                        <br><br>
-                        <strong>החטא הראשון - הקנאה:</strong> קין מרגיש מושפל. ה' נתן לו הזדמנות ל"מקצה שיפורים" ("הלא אם תיטיב שאת"), ומסביר שכל התחושות הקשות יישארו עליו אם לא יתקן. <strong>לפי מדרש בראשית רבה:</strong> קין הביא מנחה מן "הפסולת", בעוד הבל הביא את המובחר ביותר. קין לא השקיע ולכן נדחה.
-                        <br><br>
-                        <strong>החטא השני - הרצח:</strong> הוויכוח בין האחים מתפוצץ על נושאי רכוש, דת או אישה, עד שקין הורג את הבל, אחיו היחיד.
-                    </div>
+<!-- ═══ SINS ═══ -->
+<div id="sins" class="section">
+  <h2 class="section-title">חטאי בראשית — מבוא לאדם</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
 
-                    <div class="question-box"><span class="question-title">3. מה סיבת המבול האמיתית? למה לא מלמדים זאת בבתי הספר?</span></div>
-                    <div class="expansion-text">
-                        אלוהים מביא מבול בגלל ש"מלאה הארץ חמס". המקרא מפרט בפרק ו' סיבה דרמטית: <strong>חטאי מין, ניצול נשים ופריצת גבולות</strong>. "בני האלוהים" (בני אדם בעלי עוצמה) ראו כי "בנות האדם" טובות לניצולם.
-                        <br><br>
-                        השחיתות הייתה כה עמוקה עד שהאל השווה את האדם לבהמה. בבתי הספר מלמדים על "חמס" (גזל) כי הנושא המיני רגיש, אך המקרא מלמד שכשאין גבולות מיניים ומוסריים, כבר כולם שותפים להתנהגות הנוראית והעולם ראוי להשמדה.
-                    </div>
+  <div class="topic-card">
+    <h3><span class="icon">🍎</span> סיפור 1 — חטא עץ הדעת (פרק ג׳)</h3>
+    <p><strong>מה קרה:</strong> לאדם וחווה מותר לאכול מכל עצי הגן חוץ מעץ הדעת. הם בוחרים בדיוק בפרי האסור.</p>
+    <p><strong>המסר:</strong> החטא נובע מחוסר יכולת האדם להתמודד עם סקרנותו — <em>דווקא</em> עצם האיסור גורם לו להתעניין.</p>
+    <p><strong>שאלה לאל:</strong> ה' ידע מראש שהאיסור יעורר סקרנות — האם זה הוגן?</p>
+  </div>
 
-                    <div class="question-box"><span class="question-title">4. חטא היציאה מן התיבה: מה באמת קרה שם?</span></div>
-                    <div class="expansion-text">
-                        נוח יוצא מהתיבה, נוטע כרם, משתכר ומתפשט. חם רואה אותו וקורא לאחיו לצפות במחזה. 
-                        <br><br>
-                        <strong>לפי התלמוד הבבלי (סנהדרין ע'):</strong> נחלקו רב ושמואל - אחד אמר שחם <strong>סירס</strong> את נח (כדי למנוע יורשים נוספים שיחלקו את העולם) ואחד אמר שחם <strong>אנס אותו</strong> ("רבעו" - להפגנת כוח ושליטה). נוח יודע שעשו לו דבר ומקלל את כנען הנכד (כי חם כבר בורך). הסיפור מלמד שהאדם אינו משתנה בקלות; גם אחרי המבול, היצרים חוזרים.
-                    </div>
+  <div class="topic-card">
+    <h3><span class="icon">⚔️</span> סיפור 2 — קין והבל (פרק ד׳)</h3>
+    <p><strong>החטא הכפול:</strong></p>
+    <ul>
+      <li>קין הביא מנחה מהפסולת; הבל הביא מהמובחר — ה' קיבל את מנחת הבל</li>
+      <li>חטא ראשון: קנאה ותחושת אי-צדק</li>
+      <li>חטא שני: הרצח — קין לא בחר לעשות עבודה על מידותיו</li>
+    </ul>
+    <p><strong>לפי מדרש בראשית רבה:</strong> הוויכוח שהתפוצץ נסב על רכוש, דת, או אישה.</p>
+    <p><strong>ה' נתן הזדמנות שנייה</strong> — אבל קין בחר ברצח.</p>
+  </div>
 
-                    <div class="question-box"><span class="question-title">5. מגדל בבל: חטא היוהרה והאחדות הכפויה</span></div>
-                    <div class="expansion-text">
-                        בני האדם רצו לבנות מגדל שיגיע לשמיים ולהשתלט על העולם. ה' לא אוהב את האחדות הזו. קיימת דעה שהייתה זו <strong>אחדות כפויה (קומוניזם)</strong> שבה כולם חייבים לחשוב ולפעול אותו דבר. האל בילבל את שפתם כדי לשבור את הכפייה ולאפשר אינדיבידואליזם וחינוך נכון.
-                    </div>
+  <div class="topic-card">
+    <h3><span class="icon">🌊</span> סיפור 3 — המבול (פרק ו׳)</h3>
+    <p><strong>הסיבה שלא לומדים בבתי הספר:</strong> הסיבה האמיתית למבול היא חטאי מין — "בני האלוהים" ניצלו את "בנות האדם". לא "חמס" (גזל) בלבד.</p>
+    <p><strong>שלב א׳ (פרק ו׳:א-ג):</strong> גברים בעלי עוצמה מנצלים נשים באופן שיטתי. ה' משווה את האדם לבהמה.</p>
+    <p><strong>שלב ב׳:</strong> הניצול נמשך ללא גבולות — גם החיות "צורפו" לתוצאות — לכן הכל נהרס.</p>
+  </div>
 
-                    <div class="question-box"><span class="question-title">6. מה המסר של התורה בפתיחתה באוסף חטאים אלה?</span></div>
-                    <div class="expansion-text">
-                        סיפורי בראשית הם "סדנה" לכיצד לנהוג על ידי הדגמה של מה לא לעשות. הם מראים לאן אדם ללא ערכים, חינוך ובלמים יכול להידרדר (רצח, אונס אב, יוהרה). זהו מבוא הכרחי המלמד אותנו שסקרנות, קנאה ותאווה זקוקים לגבולות מוסריים.
-                    </div>
-                `
-            },
-            {
-                id: "t2",
-                title: "2. אברהם ושרה במצרים",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">2. אברהם ושרה במצרים - האם הוקרבה שרה?</h2>
-                    <div class="story-context">אברהם מגיע מאור כשדים דרך חרן לכנען. בעקבות רעב, הוא יורד למצרים וחושש לחייו בגלל יופייה של שרה. הוא מבקש ממנה להציג עצמה כאחותו.</div>
-                    <div class="question-box"><span class="question-title">1. גישת רמב"ן המפתיעה: ביקורת על האב המייסד</span></div>
-                    <div class="expansion-text">הרמב"ן טוען ש<strong>אברהם חטא חטא גדול בשגגה.</strong> הוא היה צריך לבטוח בה' שיכלכל אותו בתוך ארץ כנען ולא לעזוב אותה כלל למרות הרעב. בנוסף, הוא הכשיל את שרה כשביקש ממנה לשקר ולסכן את עצמה למען הצלתו. המילה "בשגגה" רומזת שאברהם לא התכוון לחטוא בזדון, אך כשל בביטחון.</div>
-                    <div class="question-box"><span class="question-title">2. ארבעת הגישות המצדיקות:</span></div>
-                    <div class="expansion-text">
-                        <div class="commentator-card"><span class="commentator-label">רד"ק (הגישה האקלימית):</span> המצרים היו כעורים ושטופי זימה. אברהם בחר ב"רע במיעוטו" – אונס זמני של שרה עדיף על רצח אברהם ואונס תמידי שלה.</div>
-                        <div class="commentator-card"><span class="commentator-label">חזקוני (גישת "משפחת הפשע"):</span> אברהם רצה לייצר הרתעה. שרה היתה אמורה לומר "זה אחי, אתם יודעים מי הוא?" ולרמוז שבעלה נמצא רחוק עם משפחה מיוחסת.</div>
-                        <div class="commentator-card"><span class="commentator-label">אברבנאל:</span> אם המוטיב חזר גם אצל יצחק, סימן שזו טקטיקה לגיטימית להצלת חיים.</div>
-                        <div class="commentator-card"><span class="commentator-label">ספורנו:</span> השקר נועד לייצר מו"מ (מכרז) שימשוך זמן בתקווה שהרעב יסתיים.</div>
-                    </div>
-                    <div class="question-box"><span class="question-title">3. גישת רש"ר הירש המאזנת: "אמרי נא"</span></div>
-                    <div class="expansion-text">הרש"ר הירש מדגיש את פנייתו של אברהם: הוא משתמש במילים "את יפת מראה", "אמרי <strong>נא</strong>" (בבקשה) ו"ייטב לי <strong>בעבורך</strong>". אברהם לא כפה על שרה אלא פנה אליה כשותפה. ה' הצילם ב"נגעים" (מחלות מין) שהביא על פרעה.</div>
-                `
-            },
-            {
-                id: "t3",
-                title: "3. עקדת יצחק",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">3. עקדת יצחק - בין ציות מוחלט לפרשנות מחודשת</h2>
-                    <div class="story-context">יצחק היה בן 37 בזמן העקדה. אברהם היה בן 100 כשנולד יצחק. הציווי האלוקי להעלותו לעולה מגיע ללא הסבר, ואברהם מציית ללא ויכוח, בניגוד מוחלט למקרה סדום שבו נלחם על חיי רשעים.</div>
-                    <div class="question-box"><span class="question-title">1. הביקורת של יוסי שריד (1984):</span></div>
-                    <div class="expansion-text">יוסי שריד ביקר את <strong>הצייתנות המפחידה</strong> של אברהם. הוא תמה: איך ייתכן שאברהם, שהתווכח עם אלוהים על רשעי סדום, שותק כשמדובר בבנו שלו? הוא ראה בעקדה מופת מסוכן המצדיק הקרבת בנים למען אידיאולוגיה, והשווה זאת להורים השולחים בנים לצבא בשם "קידוש השם". עבור שריד, החלופה למלחמה והקרבה צריכה להיות שלום.</div>
-                    <div class="question-box"><span class="question-title">2. פתרון פריאל עם התימוכין בכתובים: טקס העברה בדרגה</span></div>
-                    <div class="expansion-text">פריאל מציע קריאה חדשה ומהפכנית: אברהם פשוט <strong>טעה בהבנה</strong> של מה שה' ביקש. "קח נא" הוא בקשה; "העלהו" יכול לסמל <strong>העלאה בדרגה</strong> (כמו סימבה). אברהם אמר "ונשובה" (ברבים) כי תכנן לחזור יחד עם יצחק. אברהם שגה כי פירש את רצון ה' דרך המנהג הכנעני המקובל של הקרבת בנים בכורים.</div>
-                    <div class="question-box"><span class="question-title">3. הראיות במדרש לכך שלא צווה לשחוט:</span></div>
-                    <div class="expansion-text">לפי <strong>בראשית רבה:</strong> המלאכים בכו כשראו את אברהם שולח יד לסכין. דמעותיהם נפלו על המאכלת והפכו אותה ל<strong>קרש</strong>. המלאך אמר "אל תשלח <strong>ידך</strong>" ולא "סכינך", כדי להדגיש שאפילו מגע יד לא יהיה שם.</div>
-                    <div class="question-box"><span class="question-title">4. פתרון הרשב"ם והקשר למלחמת "חרבות ברזל":</span></div>
-                    <div class="expansion-text">הרשב"ם מציע שהעקדה הייתה <strong>עונש</strong> על הסכם השלום שכרת אברהם עם אבימלך. אברהם ויתר על שטחי פלשתים (אזור עזה ונחל גרר) שהובטחו לו מה'. ה' אמר: "ויתרת על המתנה שלי (הארץ)? אני אקח לך את המתנה שלך (יצחק)". פריאל מקשר זאת למורכבות הטריטוריאלית באזורים אלו (גוש קטיף ונחל גרר) עד היום.</div>
-                `
-            },
-            {
-                id: "t4",
-                title: "4. מבוא לפרשת שבוע ומדרש",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">4. מבוא לפרשת שבוע ומדרש</h2>
-                    <div class="story-context">משה תיקן את התורה לקריאה עבור היהודים, ועזרא הסופר, מנהיג יהדות בבל בבית שני, הרחיב וחילק את התנ"ך לקריאה קבועה בשבת ובשני/חמישי כהכנה לשבת.</div>
-                    <div class="question-box"><span class="question-title">1. מהי פרשת שבוע ואיך מאזנים בין הפרשות לשבתות?</span></div>
-                    <div class="expansion-text">בחמישה חומשי תורה יש <strong>54 פרשות</strong>. הלוח העברי הולך לפי הירח (354 ימים בשנה), ולכן יש רק כ-50-51 שבתות בשנה רגילה. האיזון נעשה ע"י חיבור שתי פרשות יחד כ-5-6 פעמים בשנה. בשנה <strong>מעוברת</strong>, אין צורך בחיבור. שמחת תורה הוא חג סיום הקריאה, בעוד שבועות הוא חג מתן תורה.</div>
-                    <div class="question-box"><span class="question-title">2. השיטה הארצישראלית מול השיטה הבבלית:</span></div>
-                    <div class="expansion-text">בעבר בארץ ישראל סיימו את התורה אחת ל-3 שנים (קטעים קטנים), אך בבבל סיימו אחת לשנה. אנו נוהגים כבבל כי לאחר החורבן רוב העם היה שם, והיה צורך באחידות סביב חג שמחת תורה. השם המדעי המקובל לתנ"ך הוא <strong>"מקרא"</strong>.</div>
-                `
-            },
-            {
-                id: "t5",
-                title: "5. מבוא למדרש",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">5. מבוא למדרש - עולם חז"ל והפרשנות</h2>
-                    <div class="story-context">המדרשים הם דברים שנוספו על גבי הכתוב בתנ"ך. העולם הדתי מורכב מ-10% כתובים ו-90% מדרשים ומסורת. רוב היהדות בנויה על טקסטים חיצוניים לתנ"ך שעברו גלגולים והשלמות.</div>
-                    <div class="question-box"><span class="question-title">1. מיהם חז"ל ומי לא?</span></div>
-                    <div class="expansion-text">חז"ל (חכמינו זכרם לברכה) הם החכמים שכתבו את המשנה והתלמוד בין המאה ה-1 לפנה"ס למאה ה-8 לספירה. רבנים מאוחרים כמו הרב קוק, עובדיה יוסף או הבאבא סאלי **אינם** חז"ל. חז"ל לקחו את התורה שבעל פה וכתבו אותה.</div>
-                    <div class="question-box"><span class="question-title">2. מהי התורה שבכתב ומהי התורה שבע"פ?</span></div>
-                    <div class="expansion-text">הכתב הוא חמשת חומשי תורה. התורה שבע"פ היא הביאור והפירוט של החוקים שעברו ממשה ליהושע, לזקנים, לנביאים ולאנשי הכנסת הגדולה. משה אסר לכתוב את ההרחבות הללו במשך 1500 שנה, והן עברו בעל פה בלבד.</div>
-                    <div class="question-box"><span class="question-title">3. מדוע התחילו לכתוב? (שער טיטוס)</span></div>
-                    <div class="expansion-text">חורבן בית שני יצר חשש שהתורה שבע"פ תישכח בגלות. בשער טיטוס ברומא מתוארת בזיזת המקדש - אירוע זה סימל את היציאה לגלות והצורך בתיעוד בכתב.</div>
-                    <div class="question-box"><span class="question-title">4. המשנה ושלושת הכשלים שלה:</span></div>
-                    <div class="expansion-text">המשנה (מאה 2) עוסקת בהלכות יבשות. כשלים: 1. לא מוסבר איך נבנית הלכה. 2. מביאה דעות סותרות ללא הכרעה. 3. חסר בה הפן האנושי והרגשי שקיים בתנ"ך.</div>
-                    <div class="question-box"><span class="question-title">5. פתרון הגמרא והבעיה שלה:</span></div>
-                    <div class="expansion-text">התלמוד (ירושלמי ובבלי) בא לפתור את כשלי המשנה. הבעיה: אין בה סדר, היא עוברת בחדות מהלכה לסיפור ללא ארגון. לכן עורכי מדרשי האגדה ריכזו את האלמנטים האנושיים בנפרד.</div>
-                    <div class="question-box"><span class="question-title">6. שלוש גישות לאמינות המדרש:</span></div>
-                    <div class="expansion-text">1. מדעית: יצירה ספרותית. 2. חרדית: הכל קדוש מרוח הקודש. 3. פרנקל/פריאל: מאמינים בערך המדרש, אך אם הוא לא הגיוני במציאות - הוא מבטא **רעיון/מסר** ולא עובדה היסטורית.</div>
-                `
-            },
-            {
-                id: "t6",
-                title: "6. גניבת הברכות",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">6. גניבת הברכות - מורכבות משפחתית וזוגית</h2>
-                    <div class="story-context">יצחק ורבקה נשואים כ-80 שנה. יצחק כבר זקן, עיוור וחולה, ומתכנן לברך את בניו לפני מותו. בפרק כ"ז מתוארת הדרמה המשפחתית שבה רבקה מנחה את יעקב לזכות בברכות במרמה.</div>
-                    <div class="question-box"><span class="question-title">1. מדוע הברכה היא דבר כה חשוב?</span></div>
-                    <div class="expansion-text">הברכה בעולם העתיק היוותה את <strong>העברת השרביט והנהגת הבית</strong> לדור הבא. היא קבעה מי יהיה היורש הממשיך את דרך האבות.</div>
-                    <div class="question-box"><span class="question-title">2. דמותו של יצחק ובחירתו במי לברך:</span></div>
-                    <div class="expansion-text">יצחק מתואר כ<strong>איש שדה ואוהב ציד</strong>. אהבתו לטעם הציד ("כי ציד בפיו") גרמה לו להעריך את הכוח הפיזי של עשיו. <strong>הצעת הרב בורשטיין:</strong> יצחק רצה לתת לעשיו תחושה שהוא אהוב ומוערך כדי שינסה להשתפר ולקחת אחריות לאחר מות אביו. יצחק ניסה "לחבק" את עשיו אל תוך המערכת המוסרית.</div>
-                    <div class="question-box"><span class="question-title">3. תזת הרמב"ן לשתיקה בין בני הזוג:</span></div>
-                    <div class="expansion-text">רבקה פעלה לפי הנבואה "רב יעבד צעיר" שקיבלה בהריונה. הרמב"ן מונה 4 סיבות לשתיקתה: 1. בושה ששאלה חכמים אחרים. 2. הערכה שיצחק יודע כנביא. 3. חשש שיכעס עליה ששמרה סוד שנים. 4. אמונה שהשתיקה היא רצון שמיים.</div>
-                    <div class="question-box"><span class="question-title">4. פתרון פריאל: תרגיל "ברכת אברהם"</span></div>
-                    <div class="expansion-text">פריאל מציע שהכל היה <strong>תרגיל של יצחק</strong>: הוא מעולם לא תכנן לתת לעשיו את "ברכת אברהם" (זרע וארץ), אלא רק ברכות חומריות כדי לקרבו. הוא שמר את העיקר ליעקב ממילא. "המטוטלת": אם יעקב לא ינהג כשורה, עשיו יוכל לפרוק את עולו ולהשתלט.</div>
-                `
-            },
-            {
-                id: "t7",
-                title: "7. נשיקת יעקב לרחל",
-                content: `
-                    <h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">7. נשיקת יעקב לרחל - אהבה, בדידות וביקורת</h2>
-                    
-                    <div class="story-context">
-                        <strong>רקע:</strong> יעקב בורח מנקמת עשיו אל חרן, אל משפחת אמו (לבן). הוא מגיע לבאר ורואה שם שלושה עדרי צאן המחכים להשקיה. האבן על פי הבאר כבדה מאוד ודורשת כוח של כמה רועים יחד כדי לגלול אותה, מנגנון שנועד למנוע גזל מים ולוודא חלוקה הוגנת.
-                    </div>
+  <div class="topic-card">
+    <h3><span class="icon">🍷</span> סיפור 4 — היציאה מהתיבה (פרק ט׳)</h3>
+    <p><strong>המחלוקת:</strong> חם ראה את אביו נוח ערום ושיתף את אחיו. מה עשה חם בדיוק?</p>
+    <div class="commentators-grid" style="margin-top:12px">
+      <div class="commentator-card">
+        <div class="name">רב (תלמוד בבלי)</div>
+        <p>חם <strong>סירס</strong> את נח — כדי למנוע לו עוד צאצאים ולשמר את חלוקת העולם בין שלושת הבנים.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">שמואל (תלמוד בבלי)</div>
+        <p>חם <strong>אנס</strong> ("רבע") את נח — מעשה כוח ושליטה, דומה לאבשלום עם נשות דוד.</p>
+      </div>
+    </div>
+    <p style="margin-top:14px"><strong>המסר הגדול:</strong> גם אחרי המכה הגדולה ביותר (המבול), האדם עלול לחזור על אותם חטאי מין ותאווה — האדם אינו משתנה בקלות.</p>
+  </div>
 
-                    <div class="question-box"><span class="question-title">1. המפגש בבאר והרמת האבן</span></div>
-                    <div class="expansion-text">
-                        כאשר יעקב רואה את רחל מגיעה עם צאן אביה, הוא מצליח <strong>לבד</strong> להזיז את האבן הכבדה. כיצד הצליח? המרצה מסביר כי יעקב פעל מכוח ההתרגשות וההתאהבות המיידית ברחל - אלו היו "כוחות על" רגשיים שהופעלו ברגע שמצא את היעד למסעו. הבאר בעולם העתיק שימשה לא רק כמקור מים אלא כאתר מרכזי להיכרות ושידוכים.
-                    </div>
+  <div class="topic-card">
+    <h3><span class="icon">🏗️</span> סיפור 5 — מגדל בבל (פרק י"א)</h3>
+    <p><strong>שתי גישות לסיבת הענישה:</strong></p>
+    <ul>
+      <li>רצון האדם להפגין עוצמה ויוהרה — להגיע לשמיים ולשלוט</li>
+      <li>האחדות הייתה <em>כפויה</em> (קומוניזם) — כולם חשבו ופעלו אותו דבר ללא חופש אישי</li>
+    </ul>
+    <p><strong>שאלה:</strong> מדוע אחדות האנושות נראית לה' כאיום?</p>
+  </div>
 
-                    <div class="question-box"><span class="question-title">2. הנשיקה - בין פריצות להתפרצות רגשות</span></div>
-                    <div class="expansion-text">
-                        לאחר השקיית הצאן, יעקב נושק לרחל עוד לפני שהיא יודעת מי הוא. המדרש (בראשית רבה) מציג <strong>גישה מבקרת</strong> וטוען שזו "נשיקה תפלה" (מיותרת/לא צנועה). לפי המדרש, נשיקה אינה תפלה רק ב-3 מקרים: 
-                        <ul class="list-disc pr-6">
-                            <li><strong>גדולה:</strong> מינוי למלך (שמואל לשאול).</li>
-                            <li><strong>פרקים:</strong> פגישה לאחר זמן רב (אהרון למשה).</li>
-                            <li><strong>פרישות:</strong> פרידה (רות לנעמי).</li>
-                        </ul>
-                        אנשי המקום "לחשו" וראו בכך פריצות. מנגד, <strong>הנצי"ב</strong> מסביר שהנשיקה נבעה מהתפרצות רגשות אנושית עמוקה: יעקב היה בודד, ללא בית, אישה או ארץ, וברגע שמצא קרובת משפחה יפה המבטיחה לו עתיד, הוא בכה מהתרגשות ונישק אותה.
-                    </div>
+  <div class="midrash-block">
+    <div class="source">מסר הכולל של שתי הפרשות הראשונות</div>
+    <p>סיפורי בראשית הם הדגמה לאיך יכול להיראות העולם עם אנשים לא מחונכים, שלא עוברים תהליכי חיברות וחינוך. סיפורים מוקצנים לכיוון שלילי — כמבוא הכרחי: ככה לא צריכים בני האדם להתנהל.</p>
+  </div>
+</div>
 
-                    <div class="question-box"><span class="question-title">3. גישות המתרצות את הנשיקה:</span></div>
-                    <div class="expansion-text">
-                        <div class="commentator-card"><span class="commentator-label">רבי תנחומא:</span> זו נשיקת קרובים הנהוגה בעדות מסוימות.</div>
-                        <div class="commentator-card"><span class="commentator-label">אבן עזרא:</span> הנשיקה הייתה בלחי/בזרוע ("וישק ל-") ולא בפה.</div>
-                        <div class="commentator-card"><span class="commentator-label">רמב"ן:</span> רחל הייתה קטנה באותה עת (תירוץ הנחשב לקשה לעיכול).</div>
-                        <div class="commentator-card"><span class="commentator-label">חזקוני:</span> סדר הפסוקים התהפך - קודם הציג עצמו ורק אז נישק.</div>
-                        <div class="commentator-card"><span class="commentator-label">יוסף אבן כספי:</span> גם אם הנשיקה הייתה מינית, בני אדם לא תמיד מתנהלים "בסדר", וצריך לקבל את המציאות האנושית כפי שהיא.</div>
-                    </div>
+<!-- ═══ AVRAHAM ═══ -->
+<div id="avraham" class="section">
+  <h2 class="section-title">אברהם ושרה — הירידה למצרים</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
 
-                    <div class="question-box"><span class="question-title">4. תרמית לאה - כיצד יעקב לא הכיר אותה בלילה?</span></div>
-                    <div class="expansion-text">
-                        יעקב עובד 7 שנים עבור רחל, שנראו בעיניו כ"ימים אחדים" כי הם עבדו יחד במרעה מדי יום והציפייה הייתה נסבלת. בליל החתונה לבן מחליף את רחל בלאה. קיימות 4 הצעות לכך שיעקב לא זיהה אותה:
-                        <ol class="list-decimal pr-6">
-                            <li><strong>שכרות:</strong> מהמשתה הארוך.</li>
-                            <li><strong>חושך:</strong> חושך מוחלט באוהלי המדבר.</li>
-                            <li><strong>תאומות/דמיון:</strong> יש דעה שלאה ורחל היו תאומות דומות מאוד בקולן.</li>
-                            <li><strong>מנהגי חתונה:</strong> החגיגות היו נפרדות לגברים ולנשים, וההחלפה נעשתה ברגע האחרון בשיא העייפות.</li>
-                        </ol>
-                        השיר "לאה" של אהוד מנור מבטא את כאבה של לאה שחיה בצל אחותה באותו לילה.
-                    </div>
-                `
-            },
-            { id: "t8", title: "8. שמעון ולוי בשכם", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">8. שמעון ולוי בשכם</h2><div class="expansion-text">התוכן ייטען בהמשך.</div>` },
-            { id: "t9", title: "9. מכירת יוסף", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">9. מכירת יוסף</h2><div class="expansion-text">התוכן ייטען בהמשך.</div>` },
-            { id: "t10", title: "10. האם נקם יוסף באחיו?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">10. האם נקם יוסף באחיו?</h2><div class="expansion-text">יוסף מנהל סדנה חינוכית של "מידה כנגד מידה". האחים נאזקו בגבול (תזת פריאל). "ערוות הארץ" כנגד הבור. "כנים" כנגד השקר. נאום יהודה והערבות הוכיחו חזרה בתשובה שלמה. יוסף פורץ בבכי ומתגלה.</div>` },
-            { id: "t11", title: "11. מדוע לא שלח יוסף אל אביו?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">11. מדוע לא שלח יוסף אל אביו?</h2><div class="expansion-text">מדוע שתק 22 שנה? 1. שבועה לאחים (בכור שור - תנאי ליציאה מהבור). 2. שלום המשפחה (יהודה החסיד - מניעת פירוק). 3. המתנה להתגשמות החלומות (רמב"ן - בובה על חוט). 4. <strong>תזת יואל בן נון:</strong> יוסף חשב שיעקב ויתר עליו ושלח אותו לשכם בכוונה כדי שייעלם למען השקט בבית.</div>` },
-            { id: "t12", title: "12. מדוע לא בורך ראובן?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">12. מדוע לא בורך ראובן?</h2><div class="expansion-text">ראובן איבד את הבכורה ליוסף בגלל "מעשה בלהה". המדרש טוען שרק "בלבל יצועו" (הזיז מיטה לאוהל לאה) כמחאה. הרב אריאל מסביר כניסיון להפגין מנהיגות ("הבוס"). ספר היובלים טוען לאונס (להרתעה מעריות בכתות). צוואת השבטים מתארת ייסורי מצפון של 100 שנה.</div>` },
-            { id: "t13", title: "13. מדוע נשתעבדו?", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">13. מדוע נשתעבדו? - ניתוח אביעוז</h2><div class="expansion-text">שלוש גישות: 1. חטא האבות (אברהם שירד למצרים או מכירת יוסף). האבות בוני תשתית והעם משלם מחיר. 2. חטא העם (התבוללות וירידה רוחנית במצרים). 3. <strong>גישת ה"אימון" (נחמה לייבוביץ'):</strong> השעבוד היה הכנה מנטלית ("כור הברזל") לקראת קבלת התורה והפיכה לעם סגולה.</div>` },
-            { id: "t14", title: "14. ואני אקשה והמכות", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">14. ואני אקשה והמכות</h2><div class="expansion-text">סוגיית הבחירה של פרעה. רש"י (מגיע לו להיענש), רמב"ם (בחירה כללית נלקחה), הרב מידן (פרעה איבד בחירה מרשעותו). המאבק באלילים (אברבנאל): דצ"ך (היאור), עד"ש (השגחה פרטית), באח"ב (השפלת אל השמש "רע" במזל טלה/ניסן).</div>` },
-            { id: "t15", title: "15. וינצלו את מצרים", content: `<h2 class="text-3xl font-black text-blue-800 mb-8 underline decoration-blue-200">15. וינצלו את מצרים</h2><div class="expansion-text">האם זו גניבה? 1. <strong>הרב קוק:</strong> שינוי תודעתי מעבד לבן חורין לקראת התורה. 2. <strong>שכר עבודה:</strong> פיצוי על שנים ללא שכר. 3. <strong>הרב עמית קולא:</strong> איזון היסטורי - הכסף הוחזר כששישק בזז את המקדש 400 שנה אחר כך. 4. <strong>חזקוני:</strong> "ואהבת לרעך" - מתנות מתוך ידידות.</div>` }
-        ];
+  <div class="topic-card">
+    <h3><span class="icon">📋</span> הרקע</h3>
+    <p>רעב בכנען. אברהם יורד למצרים. לפני הכניסה הוא מבקש משרה לומר שהיא אחותו — מחשש שהמצרים יהרגוהו בגלל יופיה. שרה נלקחת לפרעה, פרעה מקבל נגעים (לפי חז"ל — מחלת מין), ומחזיר את שרה בפנייה לאברהם.</p>
+    <p><strong>השאלה המוסרית:</strong> האם אברהם חטא? האם סיכן את שרה לטובתו האישית?</p>
+  </div>
 
-        // --- QUIZ POOL (INTEGRATED & CUMULATIVE) ---
-        const quizQuestions = [
-            { q: `מה גרם לאדם הראשון לחטוא בגן עדן לפי הניתוח המוסרי?`, options: [`סקרנות ללא בלמים מול גבול יחיד`, `רעב כבד לפרי`, `רצון למרוד באלוהים בכוונה`, `השפעה מאגיסטית של הנחש`], a: 0 },
-            { q: `מהי ביקורתו המרכזית של הרמב"ן על אברהם בירידתו למצרים?`, options: [`אברהם חטא חטא גדול בשגגה בכך שלא בטח בה' ובסיכון שרה`, `אברהם היה צריך להרוג את פרעה מיד`, `אברהם לא ביקש מספיק מתנות`, `אברהם חטא בכך שלא לקח את לוט`], a: 0 },
-            { q: `איך מפרש פריאל את המילה "העלהו" בסיפור העקדה?`, options: [`כטקס העלאה בדרגה או העברת שרביט המנהיגות`, `כציווי לשחוט את יצחק`, `כהוראה לטפס על ההר ולרדת מהר`, `כביטוי למסע תיירותי`], a: 0 },
-            { q: `מיהם חז"ל לפי ההגדרה המדעית?`, options: [`חכמי המשנה והתלמוד (מאה 1 לפנה"ס עד 8 לספירה)`, `רבנים מודרניים כמו הרב קוק`, `נביאי בית ראשון`, `הבאבא סאלי`], a: 0 },
-            // Topic 7 New Questions
-            { q: `מה גרם ליעקב להצליח להרים את האבן הכבדה מהבאר לבדו?`, options: [`כוח ההתרגשות וההתאהבות המיידית ברחל`, `הוא התאמן לקראת המסע`, `האבן היתה עשויה מקלקר`, `הרועים האחרים עזרו לו בסתר`], a: 0 },
-            { q: `באילו שלושה מקרים נשיקה אינה נחשבת ל"תפלה" (מיותרת) לפי המדרש?`, options: [`גדולה (מלוכה), פרקים (פגישה) ופרישות (פרידה)`, `חתונה, הולדת בן וברית מילה`, `כניסה לבית, יציאה למסע ותפילה`, `בין אחים, בין הורים ובין בני זוג`], a: 0 },
-            { q: `מהו ההסבר של הנצי"ב לנשיקת יעקב לרחל?`, options: [`התפרצות רגשות אנושית של אדם בודד ללא בית שמצא משפחה`, `שיעקב ידע בנבואה שהיא אשתו`, `שרחל ביקשה ממנו לנשק אותה`, `שהיה מדובר בטעות בניקוד של הפרשנים`], a: 0 },
-            { q: `מהי אחת הסיבות שניתנו לכך שיעקב לא זיהה את לאה בליל החתונה?`, options: [`היה חושך מוחלט והוא היה שיכור מהמשתה`, `הוא לא ראה את רחל מעולם לפני כן`, `לאה התחפשה לרחל בעזרת בגדי עשיו`, `הוא חשב שרחל ברחה מהבית`], a: 0 },
-            { q: `למה שבע שנות ההמתנה לרחל נראו ליעקב כ"ימים אחדים"?`, options: [`כי הוא ורחל עבדו יחד במרעה מדי יום`, `כי הוא היה עסוק מאוד בעבודה קשה`, `כי הוא שכח מרחל במהלך הזמן`, `כי לבן הבטיח לו פרסים כספיים`], a: 0 }
-        ];
+  <h3 style="font-family:'Playfair Display',serif; color:var(--lapis); margin:24px 0 16px; font-size:1.2rem;">עמדות הפרשנים</h3>
+  <div class="commentators-grid">
 
-        // --- CORE UI ENGINE ---
-        function showSection(id) {
-            ['home', 'topics', 'exams'].forEach(s => {
-                const element = document.getElementById(`${s}-section`);
-                if (element) element.classList.add('hidden');
-                const btn = document.getElementById(`nav-${s}`);
-                if (btn) { btn.classList.remove('active-nav'); btn.classList.add('text-blue-100'); }
-            });
-            document.getElementById(`${id}-section`).classList.remove('hidden');
-            const activeBtn = document.getElementById(`nav-${id}`);
-            if (activeBtn) { activeBtn.classList.add('active-nav'); activeBtn.classList.remove('text-blue-100'); }
-            if (id === 'exams') renderQuiz();
-            window.scrollTo(0, 0);
-        }
+    <div class="commentator-card">
+      <div class="name">רמב"ן <span class="badge badge-critical">מבקר</span></div>
+      <div class="dates">ספרד, 1194–1270</div>
+      <p>אברהם <strong>חטא חטא גדול בשגגה</strong>. היה צריך לסמוך על ה' ולא לרדת למצרים, ולא לבקש משרה לשקר. המילה "בשגגה" = לא ידע איך להתמודד, אך בסדר גודלו של אברהם — זה חטא.</p>
+    </div>
 
-        function buildTopicMenu() {
-            const menu = document.getElementById('topic-menu');
-            menu.innerHTML = '';
-            studyData.forEach(topic => {
-                const btn = document.createElement('div');
-                btn.className = 'sidebar-item p-4 rounded-xl text-slate-600 font-semibold mb-2 flex items-center gap-3';
-                btn.innerHTML = `<span>📘</span> ${topic.title}`;
-                btn.onclick = () => selectTopic(topic.id, btn);
-                menu.appendChild(btn);
-            });
-        }
+    <div class="commentator-card">
+      <div class="name">רד"ק <span class="badge badge-defense">מצדיק</span></div>
+      <div class="dates">פרובנס, 1160–1235</div>
+      <p>המצרים היו "שטופי זימה" וכהי עור. לא ידע מראש. בחר <strong>באפשרות הפחות גרועה</strong> — אם יגיד "אחותי", לא יאנסוה תמידית כי יתביישו ממנו.</p>
+    </div>
 
-        function selectTopic(id, element) {
-            document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('selected'));
-            element.classList.add('selected');
-            const topic = studyData.find(t => t.id === id);
-            const display = document.getElementById('topic-display');
-            display.style.opacity = 0;
-            setTimeout(() => {
-                display.innerHTML = topic.content;
-                display.style.opacity = 1;
-                window.scrollTo({ top: display.offsetTop - 120, behavior: 'smooth' });
-            }, 150);
-        }
+    <div class="commentator-card">
+      <div class="name">חזקוני <span class="badge badge-complex">אסטרטגי</span></div>
+      <div class="dates">צרפת, מאה 13</div>
+      <p>אברהם בנה תוכנית: שרה תציג עצמה כמשפחת פשע מיוחסת — המצרים יפחדו מהמשפחה. <strong>פסיכולוגיה חברתית</strong> — ניצול יחסי כוח.</p>
+    </div>
 
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
+    <div class="commentator-card">
+      <div class="name">אברבנאל <span class="badge badge-defense">מצדיק</span></div>
+      <div class="dates">פורטוגל–איטליה, 1437–1508</div>
+      <p>אם אברהם <em>ויצחק</em> חזרו על אותו מעשה — סימן שזו שיטה שעובדת. <strong>תוצאה מוצלחת</strong> מצדיקה את הדרך. וביקורת על הרמב"ן — "האם ציפית שימות?"</p>
+    </div>
 
-        function renderQuiz() {
-            const container = document.getElementById('quiz-container');
-            container.innerHTML = '';
-            const allQs = [...quizQuestions];
-            shuffle(allQs);
-            allQs.forEach((q, idx) => {
-                const correctText = q.options[q.a];
-                const opts = [...q.options];
-                shuffle(opts);
-                const newCorrectIdx = opts.indexOf(correctText);
-                const div = document.createElement('div');
-                div.className = 'bg-slate-50 p-8 rounded-3xl border quiz-block';
-                div.dataset.correct = newCorrectIdx;
-                div.innerHTML = `<p class="font-bold text-xl mb-6 text-slate-800 leading-tight">${idx+1}. ${q.q}</p><div class="grid md:grid-cols-2 gap-4">${opts.map((opt, i) => `<label class="flex items-center gap-4 p-5 bg-white border-2 border-slate-100 rounded-2xl cursor-pointer hover:bg-blue-50 transition-all"><input type="radio" name="q${idx}" value="${i}" class="h-6 w-6 text-blue-600"><span class="font-bold text-slate-700">${opt}</span></label>`).join('')}</div><div id="feedback-${idx}" class="mt-6 p-4 rounded-xl hidden font-bold"></div>`;
-                container.appendChild(div);
-            });
-        }
+    <div class="commentator-card">
+      <div class="name">ספורנו <span class="badge badge-complex">טקטי</span></div>
+      <div class="dates">איטליה, 1475–1550</div>
+      <p>השקר נועד <strong>למשוך זמן</strong> — כל אחד יציע מחיר גבוה יותר עבורה, הרעב יסתיים בינתיים.</p>
+    </div>
 
-        function checkQuiz() {
-            let score = 0;
-            const blocks = document.querySelectorAll('.quiz-block');
-            blocks.forEach((block, idx) => {
-                const selected = block.querySelector(`input[name="q${idx}"]:checked`);
-                const correct = parseInt(block.dataset.correct);
-                const feedback = document.getElementById(`feedback-${idx}`);
-                if (selected && parseInt(selected.value) === correct) { score++; feedback.innerText = "נכון מאד! ✨"; feedback.className = "mt-6 p-4 rounded-xl font-bold bg-green-100 text-green-800"; }
-                else { feedback.innerText = "טעות. כדאי לחזור על החומר."; feedback.className = "mt-6 p-4 rounded-xl font-bold bg-red-100 text-red-800"; }
-                feedback.classList.remove('hidden');
-            });
-            const res = document.getElementById('quiz-result');
-            res.classList.remove('hidden');
-            res.innerText = `הציון שלך: ${Math.round(score/quizQuestions.length*100)}% (${score}/${quizQuestions.length})`;
-        }
+    <div class="commentator-card">
+      <div class="name">רש"ר הירש <span class="badge badge-neutral">מאזן</span></div>
+      <div class="dates">גרמניה, 1808–1888</div>
+      <p>אברהם <em>לא כפה</em> על שרה — פנה אליה בבקשה ("אמרי <em>נא</em>"). שרה בטחה בו ולא חשה בסכנה. ויש דעה שהיא אחיינית שלו ממילא.</p>
+    </div>
+  </div>
 
-        window.onload = () => { buildTopicMenu(); showSection('home'); };
-    </script>
+  <div class="topic-card" style="margin-top:24px">
+    <h3><span class="icon">📊</span> סיכום עמדות</h3>
+    <table class="summary-table">
+      <tr>
+        <th>פרשן</th>
+        <th>עמדה</th>
+        <th>הנימוק</th>
+      </tr>
+      <tr><td>רמב"ן</td><td><span class="badge badge-critical">חטא</span></td><td>חסר אמונה, כפה על שרה לסכן עצמה</td></tr>
+      <tr><td>רד"ק</td><td><span class="badge badge-defense">לא חטא</span></td><td>אין ברירה, מציאות קשה</td></tr>
+      <tr><td>חזקוני</td><td><span class="badge badge-defense">לא חטא</span></td><td>תוכנית מחושבת</td></tr>
+      <tr><td>אברבנאל</td><td><span class="badge badge-defense">לא חטא</span></td><td>שיטה מוכחת, הגנה על חיים</td></tr>
+      <tr><td>ספורנו</td><td><span class="badge badge-defense">לא חטא</span></td><td>טקטיקת הזמן</td></tr>
+      <tr><td>רש"ר הירש</td><td><span class="badge badge-neutral">ביניים</span></td><td>בקשה, לא כפייה; שרה הסכימה מרצון</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ AKEDA ═══ -->
+<div id="akeda" class="section">
+  <h2 class="section-title">עקידת יצחק — הניסיון הגדול</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
+
+  <div class="topic-card">
+    <h3><span class="icon">📋</span> רקע</h3>
+    <p>יצחק בן 37. אברהם בן 137. ה' מצווה "קח נא את בנך את יחידך... והעלהו שם לעולה". אברהם ממהר לציית ובסוף המלאך עוצר.</p>
+    <p><strong>יוסי שריד</strong> (מנהיג שמאל, שר חינוך): ביקר את הצייתנות המפחידה — אברהם התווכח עבור סדום אך לגבי בנו לא שאל שאלות. ראה בעקדה מופת מסוכן להקרבת בנים למען אידאולוגיה.</p>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--lapis); margin:20px 0 14px; font-size:1.2rem;">שתי גישות פרשניות מרכזיות</h3>
+
+  <div class="topic-card" style="border-right-color:var(--forest)">
+    <h3><span class="icon">📗</span> גישה א׳ — פריאל: טעות בהבנה</h3>
+    <p>הציווי "קח <em>נא</em>" — בקשה, לא פקודה. "העלהו לעולה" = טקס העלאה בדרגה / העברת שרביט, לאו דווקא שחיטה. אברהם עצמו אמר "נשובה" (ברבים!).</p>
+    <div class="midrash-block" style="margin-top:14px">
+      <div class="source">בראשית רבה נ"ו ז׳</div>
+      <p>המלאכים בכו, ודמעותיהם הפכו את הסכין לקרש — לכן המלאך אמר "אל תשלח ידך" ולא "סכינך". ה' לא ציווה על שחיטה; אברהם הוא שטעה בהבנה.</p>
+    </div>
+    <p><strong>ירמיהו ז׳:ל</strong> — ה' אמר שמעולם לא ציווה להקריב בנים (נגד המנהג הכנעני בגיא בן-הינום).</p>
+  </div>
+
+  <div class="topic-card" style="border-right-color:var(--crimson)">
+    <h3><span class="icon">📕</span> גישה ב׳ — הרשב"ם: עונש על הסכם עם אבימלך</h3>
+    <p>לפני הסיפור כתוב "ויהי אחר הדברים האלה" — מה קדם? הסכם השלום עם אבימלך (פרק כ"ג).</p>
+    <p>ה' הבטיח לאברהם את ארץ כנען <em>כולה</em>, כולל שטחי אבימלך/פלשתים (גוש קטיף, נחל גרר). אברהם ויתר על שטח שהובטח לו. <strong>העקדה היא עונש</strong> — לא ניסיון.</p>
+    <div class="midrash-block" style="margin-top:12px">
+      <div class="source">קשר למציאות</div>
+      <p>המרצה קישר זאת למורכבות הטריטוריאלית סביב גוש קטיף ונחל גרר — שטחים שהרשב"ם זיהה לפני 900 שנה עדיין במחלוקת היום.</p>
+    </div>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">❓</span> השאלה הפתוחה</h3>
+    <p>בסוף הסיפור ה' אומר לאברהם שהוא <strong>עמד בניסיון</strong>. אם זו הייתה טעות, למה ה' שיבח אותו? <em>לפריאל אין תשובה</em>.</p>
+  </div>
+</div>
+
+<!-- ═══ YAAKOV ═══ -->
+<div id="yaakov" class="section">
+  <h2 class="section-title">יעקב ובניו — מורכבות משפחתית</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
+
+  <div class="topic-card">
+    <h3><span class="icon">🎭</span> פרק כ"ז — שקר הברכה</h3>
+    <p>יצחק עיוור ומבקש מעשיו לצוד. רבקה מצווה על יעקב להתחזות. יעקב מתלבש בבגדי עשיו ובפרווה. יצחק מתלבט רבות ("הקול קול יעקב!") — ובסוף מברך.</p>
+    <h4 style="margin-top:14px; color:var(--lapis); font-family:'Playfair Display',serif">למה לא שיתפו זה את זה?</h4>
+    <div class="commentators-grid">
+      <div class="commentator-card">
+        <div class="name">תוכנית יצחק</div>
+        <p>לפי הרב בורשטיין: יצחק <em>ידע</em> שיעקב יקבל את הברכה. ביקש מעשיו ראשון כדי <strong>לקרב אותו</strong> ולתת לו תחושת ערך — אולי ישתפר.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">תוכנית רבקה</div>
+        <p>לפי הרמב"ן: רבקה קיבלה מחכמים בהיריון נבואה: "הצעיר יעבוד את הבכור" — רצתה לשנות זאת. לא שיתפה יצחק מארבע סיבות (הלכה בבושה, חשבה שהוא יודע, חששה לכעסו, ראתה סימן שמיים).</p>
+      </div>
+    </div>
+    <p style="margin-top:14px"><strong>מסקנה:</strong> לשניהם הייתה אותה מטרה (ברכה ליעקב) — אך דרכי הפעולה שונות, ולא שיתפו. אין כאן "בעיה זוגית" אלא ניהול משברים מקביל.</p>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">💋</span> נשיקת יעקב לרחל (פרק כ"ט)</h3>
+    <p>יעקב מגיל הגרול אבן לבד (נס!), משקה את צאן רחל, ומיד נושק לה — לפני שהציג עצמו.</p>
+    <div class="commentators-grid">
+      <div class="commentator-card">
+        <div class="name"><span class="badge badge-critical">מבקר</span> מדרש רבה</div>
+        <p>יעקב לא יצא בסדר. רק שלוש נשיקות "מותרות": גדולה, פרקים (געגועים), פרידה. הנשיקה הזו לא נכנסת.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name"><span class="badge badge-defense">מתרץ</span> ר׳ תנחומא</div>
+        <p>נשיקת קרבת משפחה — מותרת בין בני אותה עדה/משפחה.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name"><span class="badge badge-defense">מתרץ</span> אבן עזרא</div>
+        <p>כתוב "וישק <em>ל</em>רחל" ולא "וישק <em>את</em>" — נשיקה מסוג שונה, לא בפה.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name"><span class="badge badge-neutral">מבין</span> ר' נפתלי צבי ברלין</div>
+        <p>יעקב בלי בית, בלי אישה, בלי ארץ — מגיע למשפחה, רואה אישה יפה בת דודו, הורים את האבן לבדו — <strong>התפרצות רגשות</strong> לגיטימית לחלוטין.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">⚔️</span> שמעון ולוי בשכם (פרק ל"ד)</h3>
+    <p>שכם בן חמור אונס את דינה (בת 6-7). שמעון ולוי (11-12 שנה) מרמים את שכם ואבימלך לעשות ברית מילה, ואז טובחים בכל העיר, בוזזים ומחללים גופות.</p>
+    <table class="summary-table" style="margin-top:14px">
+      <tr><th>פרשן</th><th>עמדה</th><th>נימוק</th></tr>
+      <tr><td>יעקב</td><td><span class="badge badge-critical">מגנה</span></td><td>מסכנים את כולנו; לא בירכם לפני מותו</td></tr>
+      <tr><td>רמב"ם (דרך הרמב"ן)</td><td><span class="badge badge-complex">מסויג</span></td><td>שבע מצוות בני נוח חייבו שפיטת שכם — אך הוציאו להורג צדיקים עם רשעים</td></tr>
+      <tr><td>הרלב"ג</td><td><span class="badge badge-defense">מצדיק</span></td><td>לא הייתה ברירה — הריגת שכם בלבד הייתה מובילה לנקמה בכלל המשפחה</td></tr>
+      <tr><td>רש"ר הירש</td><td><span class="badge badge-critical">מבקר</span></td><td>הרגו חפים מפשע וביזו — מעבר להגנה לגיטימית</td></tr>
+      <tr><td>אירית לוין</td><td><span class="badge badge-critical">מבקר</span></td><td>שחרור דינה — בסדר. הבזיזה וחילול גופות — זה כבר נקמנות</td></tr>
+    </table>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">🛏️</span> ראובן ובלהה (פרק ל"ה:כ"ב)</h3>
+    <p>"ויהי בשכן ישראל בארץ ההוא וילך ראובן וישכב את בלהה פילגש אביו"</p>
+    <div class="commentators-grid">
+      <div class="commentator-card">
+        <div class="name">פשוטו של מקרא</div>
+        <p>ראובן שכב עם בלהה. יעקב שמע ולא גיחם. ראובן לא בורך לפני מות יעקב.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">מסכת שבת</div>
+        <p>"כל האומר ראובן חטא — טועה." ראובן <em>לא</em> שכב עמה.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">בראשית רבה</div>
+        <p>ראובן <strong>הפך את מיטת בלהה</strong> — כביטוי מרד נגד העדפתה על לאה אמו. "כאילו שכב" — חוצפה, לא מעשה.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">הרב מידן</div>
+        <p>ראובן <strong>גרר את בלהה מחוץ לאוהל</strong> — כדי שיצחק ישכב עם לאה. יוסף פירש זאת שגוי.</p>
+      </div>
+    </div>
+    <p style="margin-top:14px"><strong>מדוע ראובן עשה מה שעשה?</strong> בתנ"ך קיים מושג של "בעילת פילגשי אב" = הצהרת ירושה ושליטה. ראובן כבן בכור הרגיש זכאי להכריז על המשך בית האב.</p>
+  </div>
+</div>
+
+<!-- ═══ YOSEF ═══ -->
+<div id="yosef" class="section">
+  <h2 class="section-title">יוסף ואחיו — מחזור נקמה ותיקון</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
+
+  <div class="topic-card">
+    <h3><span class="icon">👘</span> הרקע — כתונת הפסים</h3>
+    <p>יוסף בן 17, רועה עם האחים, מלשין עליהם. יעקב נתן לו כתונת פסים (בגדי מלכות/בכורה). האחים שנאוהו. חלומות השתחוויה הגדילו את השנאה.</p>
+    <table class="summary-table" style="margin-top:12px">
+      <tr><th>שאלה</th><th>מי אשם?</th><th>מקור</th></tr>
+      <tr><td>האם יוסף נהג לא בסדר?</td><td><span class="badge badge-critical">יוסף</span> — נרקיסיסט שלשין</td><td>בראשית רבה</td></tr>
+      <tr><td>האם יעקב נהג לא בסדר?</td><td><span class="badge badge-critical">יעקב</span> — אסור להעדיף ילד</td><td>מסכת שבת</td></tr>
+      <tr><td>האם הכל גזרת שמיים?</td><td><span class="badge badge-neutral">אף אחד</span> — תוכנית אלוקית</td><td>רמב"ן</td></tr>
+    </table>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">🕳️</span> מכירת יוסף — שלוש תוכניות</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>תוכנית ראשונה — להרוג וזרוק לבור</h4>
+        <p>הצעה קלת ראש של מרבית האחים.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>תוכנית שניה — ראובן: להשאיר בבור</h4>
+        <p>תכנן לחזור ולהציל. יצא לסיבוב — ובינתיים...</p>
+      </div>
+      <div class="timeline-item">
+        <h4>תוכנית שלישית — יהודה: למכור לישמעאלים</h4>
+        <p>נתקבלה. כשראובן חזר — יוסף כבר נמכר. קרעו בגדים, טבלו כתונת בדם.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">🎭</span> תגמול יוסף לאחיו — מידה כנגד מידה</h3>
+    <table class="summary-table">
+      <tr><th>מה עשו לו</th><th>מה הוא עשה להם</th></tr>
+      <tr><td>הכריחוהו לבור/כלא</td><td>שלח אותם לכלא שלושה ימים</td></tr>
+      <tr><td>אמרו "הכרנו את הכתונת"</td><td>שאל "ה<em>כרתם</em> אותי?" (שורש חוזר)</td></tr>
+      <tr><td>ישבו לאכול לחם לאחר מכן</td><td>הזמין אותם לסעודת לחם</td></tr>
+      <tr><td>לקחו בגדיו</td><td>הכניס כסף לשקיהם — להפוך אותם ל"גנבים"</td></tr>
+      <tr><td>גרמו שיצחק ישאל "מי אתה?"</td><td>גרם שהם ישאלו "מי אתה?"</td></tr>
+    </table>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">🤔</span> למה יוסף לא שלח ליעקב ב-22 שנה?</h3>
+    <div class="commentators-grid">
+      <div class="commentator-card">
+        <div class="name">ר' יוסף בכור שור</div>
+        <p>הוציאוהו בתנאי <strong>שישבע</strong> שלא יחזור ולא יספר ליעקב.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">ר' יהודה החסיד</div>
+        <p>אם יספר — האחים יברחו ו<strong>המשפחה תתפרק</strong>. יוסף הבוגר מקריב למען שלום הבית.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">רמב"ן</div>
+        <p>ה' מנהל את הסיפור. יוסף חיכה עד שהחלום (11 כוכבים + שמש וירח = כל המשפחה) יתגשם <strong>במלואו</strong>.</p>
+      </div>
+      <div class="commentator-card">
+        <div class="name">הרב יואל בן נון</div>
+        <p>יוסף חשב שאביו <strong>שלח אותו לאבדון</strong> — שהאחים הרגוהו ביודעין. הבין רק כשיהודה אמר שיעקב חושבו מת.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MIDRASH ═══ -->
+<div id="midrash" class="section">
+  <h2 class="section-title">מדרש וחז"ל — מסגרת תיאורטית</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
+
+  <div class="topic-card">
+    <h3><span class="icon">👥</span> מי הם חז"ל?</h3>
+    <p>מונח מדעי לחכמים שכתבו את המשנה והתלמוד — <strong>בין המאה ה-1 לפנה"ס למאה ה-8 לספירה</strong>. הרב קוק, הרב עובדיה יוסף, הבאבא סאלי — אינם חז"ל.</p>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">📚</span> שרשרת ההעברה</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>תורה שבכתב — חמישה חומשי תורה</h4>
+        <p>הניתנה למשה בהר סיני.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>תורה שבעל פה — 1,500 שנה</h4>
+        <p>משה ← יהושע ← זקנים ← נביאים ← אנשי כנסת הגדולה (עזרא הסופר)</p>
+      </div>
+      <div class="timeline-item">
+        <h4>המשנה (מאה 2 לספירה)</h4>
+        <p>כתיבת ההלכות לאחר חורבן בית שני. שלושה כשלים: (1) לא מסביר כיצד נבנית ההלכה; (2) מביא דעות סותרות ללא הכרעה; (3) חסר פן אנושי-רגשי.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>התלמוד / גמרא (מאות 3-8)</h4>
+        <p>תיקון שלושת כשלי המשנה. ירושלמי (גליל, עד מאה 4) ובבלי (בבל, עד מאה 8 — 30 כרכים). הגמרא = ארמית; תלמוד = עברית.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>מדרשי האגדה (עד מאה 13)</h4>
+        <p>מיצוי האלמנטים האנושיים, פירושי תנ"ך, סיפורים חינוכיים — בנפרד מהחומר ההלכתי.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">🔍</span> מניעים ליצירת מדרש</h3>
+    <ul>
+      <li><strong>בעיה בטקסט</strong> — פרטים חסרים שצריך למלא</li>
+      <li><strong>אסוציאציה</strong> — מילים נדירות שמופיעות במספר מקומות</li>
+      <li><strong>רצון חינוכי</strong> (לפי פרופ' יונה פרנקל) — להעביר מסר ערכי דרך קישור לדמויות תנ"כיות</li>
+    </ul>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">⚖️</span> שלוש גישות ביחס למדרש</h3>
+    <table class="summary-table">
+      <tr><th>גישה</th><th>תיאור</th><th>בעייתיות</th></tr>
+      <tr>
+        <td><strong>מדעית-אקדמית</strong></td>
+        <td>המדרשים הומצאו ע"י בני אדם; יש להם ערך ספרותי בלבד. אפילו התנ"ך עצמו מוטל בספק כיצירת אדם.</td>
+        <td>מנותקת מהזיקה הדתית</td>
+      </tr>
+      <tr>
+        <td><strong>חרדית</strong></td>
+        <td>כל מדרש קדוש, נכתב ברוח הקודש, ולא שואלים שאלות.</td>
+        <td>קשה להסביר דעות סותרות</td>
+      </tr>
+      <tr>
+        <td><strong>פרנקל / המרצה</strong></td>
+        <td>אמונה במדרשים בגדול; אם מדרש לא הגיוני — מסתכלים על המשמעות הרחבה שרוצה להעביר.</td>
+        <td>—</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="topic-card">
+    <h3><span class="icon">📅</span> פרשיות השבוע — יסודות</h3>
+    <p>54 פרשות בתורה לעומת ~50 שבתות בשנה לפי הלוח הירחי. פתרון: חיבור פרשיות (5-6 פעמים/שנה). בשנה מעוברת — אין חיבורים. השיטה הבבלית (סיום בשנה אחת) ניצחה על הארצישראלית (סיום ב-3 שנים) — כי רוב העם היה בגלות בבל ועזרא הסופר ייצב את האחידות סביב שמחת תורה.</p>
+  </div>
+</div>
+
+<!-- ═══ QUESTIONS ═══ -->
+<div id="questions" class="section">
+  <h2 class="section-title">שאלות לתרגול ולחינוך עצמי</h2>
+  <div class="section-divider">✦ ✦ ✦</div>
+
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--crimson); margin-bottom:20px; font-size:1.2rem;">חטאי בראשית</h3>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 1 — זיהוי מניע</div>
+    <div class="question-text">מדוע חטא האדם הראשון בגן עדן? מה מלמד הסיפור על טבע האדם?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">החטא נבע מחוסר יכולת האדם להתמודד עם סקרנותו — עצם האיסור עורר את הרצון. ה' הציב גבול יחיד, אך יצר האדם מושך דווקא אל האסור. הסיפור מלמד שגם לסקרנות צריך לשים גבולות, ושהאדם אינו יכול להתמודד עם "לא" מבלי לנהל את עצמו.
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 2 — ניתוח כפול</div>
+    <div class="question-text">מה הם שני החטאים של קין? מדוע ה' נתן לו הזדמנות שנייה ולמה לא ניצל אותה?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">חטא ראשון: קנאה ותחושת חוסר צדק (הביא מנחה מהפסולת ולא קיבל הכרה). חטא שני: הרצח. ה' נתן לו אפשרות לתיקון ("אם תיטיב, שאת"), אך קין לא בחר לעבוד על מידותיו. הוויכוח שהתפוצץ — לפי בראשית רבה — נסב על רכוש, דת, או אישה.
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 3 — פרשנות מדרשית</div>
+    <div class="question-text">מהי הסיבה האמיתית למבול לפי הכתוב (פרק ו׳)? מדוע נוטים להצניע זאת בבתי הספר?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">הסיבה האמיתית היא ניצול נשים מיני שיטתי — "בני האלוהים" (גברים בעלי כוח) ניצלו את "בנות האדם". ה' משווה את האדם לבהמה. "חמס" (גזל) נזכר אמנם, אך הסיבה העמוקה היא פריצת גבולות מיניים. בבתי ספר מצניעים זאת כי הנושא נחשב רגיש.
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--crimson); margin:28px 0 16px; font-size:1.2rem;">אברהם ושרה</h3>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 4 — השוואת פרשנים</div>
+    <div class="question-text">הסבר את ההבדל בין עמדת הרמב"ן לעמדת אברבנאל בפרשת ירידת אברהם למצרים.</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">הרמב"ן: אברהם חטא חטא גדול — היה צריך לסמוך על ה' בכנען ולא לרדת, ולא לבקש משרה לשקר. הוא "גדול" ולכן גם טעות בשגגה נחשבת לו כחטא. אברבנאל: לא חטא כלל — אם גם יצחק (דורו הבא) חזר על אותה שיטה, סימן שזו דרך פעולה שעובדת במציאות. מי שמסכן חיי עצמו "כדי שיתנהג בדרך ה'" — כבר חטא.
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 5 — פסיכולוגיה של הטקסט</div>
+    <div class="question-text">כיצד רש"ר הירש מגן על אברהם? מה הטיעון שלו מהטקסט עצמו?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">הירש מדייק בניסוח הטקסט: אברהם פנה לשרה בלשון "אמרי נא" (בקשה, לא פקודה), "את יפת מראה" (הכיר בה כנפרדת), "ייטב לי בעבורך" (הסכמה הדדית). שרה לא מודעת לסכנה ובוטחת בו. לפי פירוש זה, אין כאן כפיה — יש שותפות. יש גם דעה שהיא אחיינית שלו ממילא.
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--crimson); margin:28px 0 16px; font-size:1.2rem;">עקידת יצחק</h3>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 6 — ביקורת אידיאולוגית</div>
+    <div class="question-text">מהי הביקורת של יוסי שריד על עקידת יצחק? כיצד קשר זאת למציאות הפוליטית שלו?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">שריד ביקר שאברהם הלך מבלי להתלבט ומבלי לשאול שאלות — בשונה מהויכוח שניהל עבור סדום. ראה בכך מופת מסוכן: ההורשה לשלוח ילדים למות מסמלת הורים ישראלים השולחים בנים לצבא "לשם שמיים". כמנהיג שמאל, ראה בשלום חלופה ולא בהקרבה. עצמו הלך לגור בשדרות (שהופגזה) כאידיאולוגיה — עשה מה שאמר.
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 7 — קריאה מחדש</div>
+    <div class="question-text">מהם שלוש ראיות בכתובים שפריאל מביא לטעות אברהם?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">(1) "קח נא" — בקשה ולא כפייה. (2) "העלהו" — פירוש של העלאה בדרגה/העברת שרביט, לא שחיטה. (3) "נשובה אליכם" (ברבים!) — אברהם עצמו תכנן שיחזרו שניהם. כמו כן, המלאך אמר "אל תשלח ידך" ולא "סכינך" — כי הסכין כבר הפך לקרש מדמעות המלאכים (בראשית רבה נ"ו ז׳).
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--crimson); margin:28px 0 16px; font-size:1.2rem;">יעקב ובניו</h3>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 8 — מורכבות פנים-משפחתית</div>
+    <div class="question-text">מדוע לפי הרמב"ן לא שיתפה רבקה את יצחק בתוכניותיה? ציין ארבע סיבות.</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">(1) הלכה לחכמים מבחוץ (ולא ליצחק) בנושא ההיריון — בושה לספר לו. (2) חשבה שיצחק כנביא כבר יודע. (3) חששה שיכעס שלא סיפרה לו שנים. (4) ראתה בשתיקתה הארוכה סימן שמיים — ולכן אסור להיא שתפר אותה.
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 9 — שמעון ולוי</div>
+    <div class="question-text">הסבר את המחלוקת בין הרמב"ם (דרך הרמב"ן) לבין הרלב"ג בנושא הטבח בשכם.</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">הרמב"ם (דרך הרמב"ן): שבע מצוות בני נוח מחייבות הקמת מערכת משפט. שכם הפר אותן ולכן דינו מוות. אך הרמב"ן דוחה — אם כך, יעקב היה צריך לדון, לא שמעון ולוי. ומדוע לא ברכם לפני מותו? הרלב"ג: לא הייתה ברירה — הריגת שכם לבד הייתה מובילה לנקמה על כל המשפחה המיעוטת. מוסרית, לא הייתה אפשרות אחרת בשטח.
+    </div>
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif; color:var(--crimson); margin:28px 0 16px; font-size:1.2rem;">יוסף ומדרש</h3>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 10 — עומק טקסטואלי</div>
+    <div class="question-text">כיצד יוסף מעמיד את אחיו ב"מידה כנגד מידה"? ציין לפחות שלוש דוגמאות.</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">(1) הם כלאו אותו — הוא כלא אותם שלושה ימים. (2) הם ישבו לאכול לחם לאחר מכן — הוא הזמין אותם לארוחת לחם. (3) הם גרמו שפשטו ממנו את כתונת הפסים — הוא הכניס כסף לשקיהם להפוך אותם ל"גנבים". (4) הם הכריחו את יצחק לשאול "מי אתה?" — הוא גרם שהם ישאלו "מי אתה?". (5) הוא נשאל "הכרתם?" (הכתונת) — שאל אותם "הה<em>כרתם</em> אותי?".
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 11 — שאלה פתוחה / עמדה אישית</div>
+    <div class="question-text">האם לדעתך אברהם חטא בירידתו למצרים? בחר עמדה אחת מהקורס ונמק אותה.</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג רמזים לתשובה</button>
+    <div class="answer-content">
+      <strong>אם תבחר ברמב"ן:</strong> אמונה אמיתית = להישאר בכנען. אברהם ידע שה' שלחו לשם — לחזור בגלל רעב זה חוסר אמונה. בנוסף, לבקש מאשתו לסכן עצמה היא התנהגות שמרכזת את טובתו האישית.<br><br>
+      <strong>אם תבחר באברבנאל:</strong> הצלת חיים עוקפת מגבלות מוסריות רבות. אם שיטה "עובדת" (גם יצחק חזר עליה) — סימן שאינה חטא. הרמב"ן אומר שיש רצח — אך לאמור לאדם "מות כדי להיות צדיק" בלתי אנושי.
+    </div>
+  </div>
+
+  <div class="question-block">
+    <div class="q-number">שאלה 12 — ידע כללי</div>
+    <div class="question-text">מהם שלושת כשלי המשנה, וכיצד התלמוד מתקן אותם?</div>
+    <button class="answer-toggle" onclick="toggleAnswer(this)">הצג תשובה</button>
+    <div class="answer-content">כשלי המשנה: (1) לא מסביר כיצד נבנית ההלכה; (2) מביא דעות סותרות ללא הכרעה; (3) חסר פן אנושי-רגשי. <br>התלמוד מתקן: (1) מגדיר את תהליך בניית ההלכה; (2) מכריע בין דעות; (3) מוסיף סיפורים חינוכיים ואלמנטים רגשיים-אנושיים.
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateProgress();
+}
+
+function toggleAnswer(btn) {
+  const content = btn.nextElementSibling;
+  content.classList.toggle('open');
+  btn.textContent = content.classList.contains('open') ? 'הסתר תשובה' : 'הצג תשובה';
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.answer-content').length;
+  const open  = document.querySelectorAll('.answer-content.open').length;
+  const pct   = Math.round((open / total) * 100);
+  const fill  = document.getElementById('progress-fill');
+  if (fill) fill.style.width = pct + '%';
+}
+
+// Overview item click fix
+document.querySelectorAll('.overview-item').forEach((el, i) => {
+  el.onclick = () => {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const ids  = ['overview','sins','avraham','akeda','yaakov','yosef','midrash','questions'];
+    const map  = [1,1,2,3,4,5,6]; // map from overview grid index to tab index
+    const tab  = tabs[map[i]];
+    const sectionId = tab.getAttribute('onclick').match(/'([^']+)'/)[1];
+    showSection(sectionId, tab);
+  };
+});
+</script>
 </body>
 </html>
